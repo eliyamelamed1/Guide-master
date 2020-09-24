@@ -1,0 +1,276 @@
+/*  */
+
+/* 'margin/padding: top right bottom left - auto = width center */
+
+/*==============
+  relative length 
+  ==============*/
+/* em: Relative to the font-size of the element (2em means 2 times the size of the current font)*/
+/* rem: Relative to the MOTHER font */
+/* vw/vh: Relative to 1% of the width/height of the viewport**/
+
+/* justify-content: flex-start - Default value. Items are positioned at the beginning of the container*/
+/* justify-content: flex-end - Items are positioned at the end of the container */
+/* justify-content: center - Items are positioned at the center of the container */
+/* justify-content: space-between - Items are positioned with space between the lines */
+/* justify-content: space-around - Items are positioned with space before, between, and after the lines */
+/* justify-content: initial - Sets this property to its default value*/
+/* justify-content: inherit	- Inherits this property from its parent element. */
+/*  */
+
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Decalring fonts (if the left font isn't Supported by the browser the next font is gonna be displayed etc.. ) */ 
+    font-size: 1.125rem;
+    font-weight: 300;
+    margin: auto;
+    
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/*  ===========
+    Layout
+    ===========
+*/
+ 
+header {
+    background: #f8f8f8; 
+    padding: 2em 0;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.container {
+   
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    
+}
+
+.container-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; /* make the title + the navigation-bar stack on each other */
+}
+
+
+/* Make the site Responsive */
+@media (min-width: 800px) {
+    .container-flex {
+        flex-direction: row;
+    }
+    main {
+        width: 70%;
+    }
+    aside {
+        width: 25%;
+    }
+}
+
+
+
+/*  ===========
+    Typography
+    ===========
+*/
+
+h1,
+h2,
+h3 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  /* Declaring fonts (if the left font isn't Supported by the browser the next font is gonna be displayed etc.. ) */ 
+    font-weight: 400; /* Font boldness */
+    color: #143774;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    justify-content: space-between;
+    margin: 0;
+}
+
+a {
+    color: #117799;
+}
+
+a:hover,
+a:focus {
+    color: #143774;
+}
+
+strong {
+    font-weight: 700;
+}
+
+/* h1 subtitle */
+.subtitle {
+    font-weight: 700; 
+    color: #1792d2;
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.article-title {
+    font-size: 1.5rem;
+}
+
+.article-read-more,
+.article-info {
+    font-size: 0.875rem;
+}
+
+.article-read-more {
+    color: #1792d2;
+    text-decoration: none;
+    font-weight: 700; 
+}
+
+.article-read-more:hover,
+.article-read-more:focus {
+    color: #143774;
+    text-decoration: underline;
+}
+
+.article-info {
+    margin: 2.5em 5 5 5;
+}
+
+
+
+/*  ===========
+    Navigation
+    ===========
+*/
+
+
+nav ul {
+    list-style: none; /* Erase the list dots ul = unordered list*/
+    padding: 0; /* Erase the space created from the dots  */
+    display: flex; /* Make the Buttons one next to each other */
+    justify-content: center; /* Center the Navigation-bar */
+
+}
+
+nav li {
+   
+    margin-left: 2em;
+    
+}
+
+nav a {
+    text-decoration: none; /* overline/underline/line-through/none */
+    color: #707070;
+    font-weight: 700;
+    padding: 0.1em 0;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #1792d2;
+}
+
+.current-page {
+    text-decoration: underline black;
+    text-decoration-thickness: auto;
+}
+
+.current-page:hover {
+    color: red;
+}
+
+
+/* 
+ARTICLES
+*/
+
+.article-featured {
+    border-bottom: #707070 1px solid;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    
+}
+
+.article-recent {
+    display: flex;
+    flex-direction: column; /* useless line */
+    margin-bottom: 2em;
+}
+
+.article-recent-main {
+    order: 2;
+    
+}
+
+.article-recent-secondary {
+    order: 1;
+}
+
+@media (min-width: 800px) {
+    .article-recent {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .article-recent-main {
+        width: 68%;
+        
+    }
+    .article-recent-secondary {
+        width: 30%;
+    }
+    .article-image {
+        width: 100%;
+        height: 25vh;
+        object-fit: cover;
+        object-position: middle;
+    }
+    .article-featured {
+        display: flex;
+        flex-direction: column;     
+    }
+    .article-featured-image {
+        order: -2;
+        
+    }
+    
+    .article-info {
+        order: -1;
+    }
+    .article-title {
+         margin-bottom: -0.05em;
+    }
+
+}
+
+/* 
+Widgets
+*/
+
+.sidebar-widget {
+    padding: 1.5em;
+    border: #efefef solid 1.5vmax;
+    margin-bottom: 2em;
+}
+
+
+.widget-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    padding-bottom: 1em;
+}
+
+.widget-post-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.widget-image {
+    padding-bottom: 1em;
+}
