@@ -23,8 +23,7 @@ const answer = document.querySelector(".answer")
 
 
 const btns = document.querySelectorAll('.btn') 
-var operations = 0; // two operations in row are not allowed
-
+// Assign values to each button
 btns.forEach(function (btn) 
 {   
 
@@ -128,8 +127,10 @@ btns.forEach(function (btn)
 
 });
 
+var operations = 0; // two operations in row are not allowed
 const button_numbers = document.querySelectorAll(".numbers")
 const button_op = document.querySelectorAll(".op")
+
 
 button_numbers.forEach(function (bt) 
 {     
