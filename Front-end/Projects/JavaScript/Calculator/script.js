@@ -1,5 +1,5 @@
 // Declaring ac button
-const AllClear = document.querySelector(".two-squares")
+const AllClear = document.querySelector(".All-clear")
 const pre = document.querySelector(".pre-num")
 const current = document.querySelector(".current-num")
 const num1 = document.querySelector(".num1")
@@ -81,7 +81,7 @@ btns.forEach(function (btn)
             {
                 current.innerText += 9 
             }
-            if (styles.contains('two-squares')) 
+            if (styles.contains('All-clear')) 
             {
                 current.innerText = ""
                 pre.innerText = ""
