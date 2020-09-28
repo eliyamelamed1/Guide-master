@@ -24,15 +24,14 @@ const answer = document.querySelector(".answer")
 
 const btns = document.querySelectorAll('.btn') 
 var operations = 0; // two operations in row are not allowed
-const a = 1  
+
 btns.forEach(function (btn) 
 {   
 
     btn.addEventListener('click', function(example)
     {   
         const styles = example.currentTarget.classList
-        if (a == 1) 
-        {
+        
             // Buttons of numbers
             if (styles.contains('num0'))
             {
@@ -97,13 +96,7 @@ btns.forEach(function (btn)
             current.innerText = eval(current.innerText)
             }
 
-            operations = 0;
 
-        }
-
-        if (operations == 0) 
-        {
-        
             // Buttons of operations
             if (styles.contains('power')) 
             {
@@ -129,12 +122,42 @@ btns.forEach(function (btn)
             {
                 current.innerText += ".";            
                 
-            }
-            
-            operations = 1
-        }
+            }  
           
     })
 
 });
 
+const button_numbers = document.querySelectorAll(".numbers")
+const button_op = document.querySelectorAll(".op")
+
+button_numbers.forEach(function (bt) 
+{     
+
+    bt.onclick = function(bt) 
+    {
+        operations = 0;
+        button_op.forEach(function (bt)
+        {
+            bt.disabled = false;
+        })
+    }
+})
+
+button_op.forEach(function (bt) 
+{     
+    bt.onclick = function(bt) 
+    {
+        if (operations == 0)
+        {
+            button_op.forEach(function (bt){
+                bt.disabled = true;
+
+        })
+    }
+
+            operations = 1;
+            console.log(operations)
+        }
+        
+})
