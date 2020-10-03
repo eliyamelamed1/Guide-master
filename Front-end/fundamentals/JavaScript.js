@@ -259,7 +259,21 @@ try
                /* let ,const and var */  
                  
 /* Differences between let & var */             
-  
+
+{
+  console.log(x);
+}
+var x = "Hello World";
+// the console will show - - > Hello Woeld
+
+{
+  console.log(y);
+}
+let y = "Hello World" 
+// Error
+ 
+
+
 {
   var x = 2;
 }
@@ -268,7 +282,7 @@ try
 {
   let y = 2;
 }
-// x CANT be used here
+// y CANT be used here
 
 
 // Redeclaring Variables 
