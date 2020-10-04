@@ -1,0 +1,99 @@
+ •  The Boys Scout Rule - always leave the code better than you found it, improve it. 
+
+ •  The author should write the code so that everyone will have an easy time to understand it. 
+
+ (1) Meaningful Names
+
+ • Use Intention-Revealing Names
+❌ int d; // elapsed time in days
+✔️ int elapsedTimeInDays;
+ • Use Pronounceable Names
+
+ • Use Searchable Names
+❌NOT Searchable - Date isn't unique 
+setRemainderForDate( Date ) 
+
+✔️Searchable - enterDate is unique
+setRemainderForDate( enterDate )
+
+ •  Class names - use nouns
+✔️ class Battery() 
+ •  Functions names - use verbs 
+
+✔️ function getBatteryModel() 
+ • Pick One Word per Concept 
+❌= two concepts (add+insert) for instance:
+addBatteryAge
+InsertBatteryModel
+✔️= one concept (append) for instance :
+appendBatteryAge
+appendBatteryModel
+
+ •  For different Concepts use different words
+✔️= first concept (Battery) - append
+appendBatteryAge
+appendBatteryModel 
+✔️= second concept (Car) word - Insert
+insertCarAge
+insertCarModel
+
+ • Shorter names are generally better than longer ones, as long as they are clear
+
+ (2) Functions - Should be small and do one thing.
+
+ •  Functions should either do something or answer something, but not both. 
+
+ • Function Arguments - Less arguments are better
+function example(age) - best
+function example(age, name) - good
+function example(age, name, address) - ok
+
+ •   Functions Shouldn't have more than 3 arguments,if a function have more than 3 it should be split to another function. 
+
+ • Flag (bool) Arguments Should be separated
+❌Bad - 
+bool IsMale = True/False
+ if ( isMale ) 
+GetAverageAge( isMale )
+else
+GetAverageAge( !isMale )
+
+✔️Good-
+if ( isMale ) 
+GetMaleAverageAge() 
+else 
+GetFemaleAverageAge() 
+
+ (3) Comments - 
+
+ •  If you must add comment to understand your code it means the code is written poorly go back and clean it up. 
+❌Bad code 
+// Check to see if the employee is eligible for full benefits 
+if ((employee.flags & HOURLY_FLAG) &&     (employee.age > 65)) 
+✔️Good code
+if (employee.isEligibleForFullBenefits())
+
+ •  The proper use of comments is usually to compensate for our failure to express ourself in code
+
+ • Clear and expressive code with few comments is far superior to cluttered and complex code with lots of comments. 
+
+ •  Code is meant to evolve, too often the comments are left behind and become misleading 
+
+ •  Not Accurate - If you decide to write a comment then spend the time necessary to make sure it's the best comment you can write
+
+-------Valid reasons to use comments-------
+
+ • Explanation of intent -  used for the programmer to explain the intent/reason behind a decision he made
+
+ • Clarification/Informative Comments 
+// enterDate format -  dd, mm, yyyy
+setRemainderForDate( enterDate ) 
+
+ • TODO comments - It's reasonable to leave “To do” notes in the form of  //TODO. 
+TODOs are jobs that the programmer thinks should be done to the code. 
+
+ • Amplification  - A comment may be used to amplify the importance of something that may otherwise seem inconsequential.
+
+
+
+
