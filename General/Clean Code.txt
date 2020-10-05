@@ -10,30 +10,31 @@
  • Use Pronounceable Names
 
  • Use Searchable Names
-❌NOT Searchable - Date isn't unique 
+❌ NOT Searchable name  - Date isn't unique 
 setRemainderForDate( Date ) 
 
-✔️Searchable - enterDate is unique
+✔️ Searchable - enterDate is unique
 setRemainderForDate( enterDate )
 
  •  Class names - use nouns
 ✔️ class Battery() 
- •  Functions names - use verbs 
 
+ •  Functions names - use verbs 
 ✔️ function getBatteryModel() 
+
  • Pick One Word per Concept 
-❌= two concepts (add+insert) for instance:
+❌ = two concepts (add+insert) for instance:
 addBatteryAge
 InsertBatteryModel
-✔️= one concept (append) for instance :
+✔️ = one concept (append) for instance :
 appendBatteryAge
 appendBatteryModel
 
  •  For different Concepts use different words
-✔️= first concept (Battery) - append
+✔️ = first concept (Battery) - append
 appendBatteryAge
 appendBatteryModel 
-✔️= second concept (Car) word - Insert
+✔️ = second concept (Car) word - Insert
 insertCarAge
 insertCarModel
 
@@ -58,7 +59,8 @@ GetAverageAge( isMale )
 else
 GetAverageAge( !isMale )
 
-✔️Good-
+✔️Good -
+bool IsMale = True/False
 if ( isMale ) 
 GetMaleAverageAge() 
 else 
@@ -79,7 +81,8 @@ if (employee.isEligibleForFullBenefits())
 
  •  Code is meant to evolve, too often the comments are left behind and become misleading 
 
- •  Not Accurate - If you decide to write a comment then spend the time necessary to make sure it's the best comment you can write
+ •  Inobvious - If you decide to write a comment then spend the time necessary to make sure it's the best comment you can write. 
+Any comment that forces you to look in another module, failed to communicate you. 
 
 -------Valid reasons to use comments-------
 
@@ -94,6 +97,21 @@ TODOs are jobs that the programmer thinks should be done to the code.
 
  • Amplification  - A comment may be used to amplify the importance of something that may otherwise seem inconsequential.
 
+(4) Formatting - 
 
+ • Variable Declarations - Variables should be declared as close to their usage as possible
 
+ • Dependent Functions - If one function calls another, they should be vertically close, The caller should be above the one that have been called
+
+ • Shared concept - group of functions that perform a similar operation should be close to each other.
+
+ •  Horizontal Line - A rule of thumb is that a line should not contain more than 80 - 120 characters 
+
+ • Horizontal Openness and Density - We use horizontal white space to associate things that are strongly related
+❌ Bad
+var x=5
+✔️ Good 
+var x = 5
+
+ •  Team Rules - A team of developers working together should agree upon the same formatting style 
 
