@@ -115,3 +115,36 @@ var x = 5
 
  •  Team Rules - A team of developers working together should agree upon the same formatting style 
 
+(4) Error handling - 
+
+ •  Use Exceptions Rather  Than Return Codes
+
+ • Write Your  Try-Catch-Finally  Statement First - try blocks are like transactions.  Your  catch has to leave your program in a consistent state, no matter what happens in the try.
+
+ • Use Unchecked Exceptions 
+
+ • Provide Context with Exceptions - Create informative error messages that provide enough context to determine the source and location of an error.
+
+ • SPECIAL  CASE  PATTERN -  You create a class or configure an object so that it handles an error for you
+
+ • Don't return null - If you are tempted to return null from a method, consider throwing an exception or returning a SPECIAL  CASE object instead
+
+ • Don't pass null - Returning  null from methods is bad, but passing  null into methods is worse. Unless you are working with an  API which expects you to pass  null, you should avoid passing  null  in your code whenever possible. 
+
+ (5) Classes - 
+
+ • Classes should be small - If we cannot derive a concise name for a class, then it’s likely too large.
+
+ • A Class should have one and only responsibility
+
+ • A Number of small classes are better than a single large one
+
+ Emergence - 3 simple rules for creating good project
+
+ • Rule 1:  Runs All the  Tests - The fact that we have these tests eliminates the fear that cleaning up the code will break it!
+
+ • Rule 2: Refactoring - For each few lines of code we add, we pause and reflect on the new design. Did we just degrade it? If so, we clean it up and run our tests to demonstrate that we haven’t broken anything
+
+ • Rule 3: No Duplication - Creating a clean system requires the will to eliminate duplication, even in just a few lines of code
+
+ • Bonus: Expressive - code should clearly express the intent of its author.  The clearer the author can make the code, the less time others will have to spend understanding it. Spend a little time with each of your functions and classes. Choose better names, split large functions into smaller functions, and generally just take care of what you’ve created. 
