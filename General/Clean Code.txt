@@ -2,15 +2,17 @@
 
  • Avoid Negative Conditionals - Negatives are just a bit harder to understand than positives. So, when possible, conditionals should be expressed as positives. 
 For example: 
-if (buffer.shouldCompact()) is preferable to
+❌ Bad - 
 if (!buffer.shouldNotCompact())
+✔️ Good - 
+if (buffer.shouldCompact())
 
  • Consistency - If you do something a certain way, do all similar things in the same way.
-❌BAD 
+❌ BAD - 
 daysInAWeek
 daysInamonth
 daysInAyear
-✔️GOOD 
+✔️ GOOD - 
 daysInAWeek
 daysInAMonth
 daysInAYear
@@ -75,20 +77,20 @@ function example(age, name, address) - ok
  •   Functions Shouldn't have more than 3 arguments,if a function have more than 3 it should be split to another function. 
  
  •  Order Naming - If you did used more than one argument in a function contain its name should contain its arguments order
-❌Bad
+❌ Bad
 check Equal (expected, actual)  
-✔️Good
+✔️ Good
 checkExpectedEqualActual (expected, actual) 
 
  • Flag (bool) Arguments Should be separated
-❌Bad - 
+❌ Bad - 
 bool IsMale = True/False
  if ( isMale ) 
 GetAverageAge( isMale )
 else
 GetAverageAge( !isMale )
 
-✔️Good -
+✔️ Good -
 bool IsMale = True/False
 if ( isMale ) 
 GetMaleAverageAge() 
@@ -98,10 +100,10 @@ GetFemaleAverageAge()
  (3) Comments - 
 
  •  If you must add comment to understand your code it means the code is written poorly go back and clean it up. 
-❌Bad code 
+❌ Bad code 
 // Check to see if the employee is eligible for full benefits 
 if ((employee.flags & HOURLY_FLAG) &&     (employee.age > 65)) 
-✔️Good code
+✔️ Good code
 if (employee.isEligibleForFullBenefits())
 
  •  The proper use of comments is usually to compensate for our failure to express ourself in code
