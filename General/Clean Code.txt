@@ -1,6 +1,29 @@
+  (0)General 
+
+ • Avoid Negative Conditionals - Negatives are just a bit harder to understand than positives. So, when possible, conditionals should be expressed as positives. 
+For example: 
+if (buffer.shouldCompact()) is preferable to
+if (!buffer.shouldNotCompact())
+
+ • Consistency - If you do something a certain way, do all similar things in the same way.
+❌BAD 
+daysInAWeek
+daysInamonth
+daysInAyear
+✔️GOOD 
+daysInAWeek
+daysInAMonth
+daysInAYear
+
+ • Single language in one source file - files should be aimed to contain one language. 
+
+ • Duplication : one of the most important clean code rules - Don't Repeat Yourself
+
  •  The Boys Scout Rule - always leave the code better than you found it, improve it. 
 
  •  The author should write the code so that everyone will have an easy time to understand it. 
+
+ • Dead code : code that isn't used is wasteful and should be discarded. Keep your source files clean and well organized. 
 
  (1) Meaningful Names
 
@@ -115,7 +138,7 @@ var x = 5
 
  •  Team Rules - A team of developers working together should agree upon the same formatting style 
 
-(4) Error handling - 
+(5) Error handling - 
 
  •  Use Exceptions Rather  Than Return Codes
 
@@ -131,7 +154,7 @@ var x = 5
 
  • Don't pass null - Returning  null from methods is bad, but passing  null into methods is worse. Unless you are working with an  API which expects you to pass  null, you should avoid passing  null  in your code whenever possible. 
 
- (5) Classes - 
+ (6) Classes - 
 
  • Classes should be small - If we cannot derive a concise name for a class, then it’s likely too large.
 
@@ -139,7 +162,7 @@ var x = 5
 
  • A Number of small classes are better than a single large one
 
- Emergence - 3 simple rules for creating good project
+ (7) Emergence - 3 simple rules for creating good project
 
  • Rule 1:  Runs All the  Tests - The fact that we have these tests eliminates the fear that cleaning up the code will break it!
 
