@@ -67,12 +67,18 @@ insertCarModel
 
  •  Functions should either do something or answer something, but not both. 
 
- • Function Arguments - Less arguments are better
+ • Function Arguments - always aim to use  one arguments in function the less argument the cleaner the code
 function example(age) - best
 function example(age, name) - good
 function example(age, name, address) - ok
 
  •   Functions Shouldn't have more than 3 arguments,if a function have more than 3 it should be split to another function. 
+ 
+ •  Order Naming - If you did used more than one argument in a function contain its name should contain its arguments order
+❌Bad
+check Equal (expected, actual)  
+✔️Good
+checkExpectedEqualActual (expected, actual) 
 
  • Flag (bool) Arguments Should be separated
 ❌Bad - 
