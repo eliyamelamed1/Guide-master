@@ -44,7 +44,7 @@ function Post(data) {
     <div className = "post" > // in JSX use "className" to work with css, instead of "class"
       <img src = {data.ImageUrl} />
       <h3>Full Name: {data.FullName} </h3>
-      <p style = {{display: data.PhoneNumber ? "block" : "none"}} > Phone number: {data.PhoneNumber} </p> // if data.PhoneNumber isn't passed don't display "Phone Number:" 
+      <p style = {{display: data.PhoneNumber ? "block" : "none"}} > Phone number: {data.PhoneNumber} </p> // if data.PhoneNumber isn't passed don't display "Phone number:" 
     </div>
  ) 
 } 
