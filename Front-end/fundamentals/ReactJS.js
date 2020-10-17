@@ -65,3 +65,5 @@ function HomePage() {
     </div>
   )
 }
+
+ReactDom.render( <HomePage />, document.getElementById("IdName") )
