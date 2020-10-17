@@ -26,7 +26,7 @@ function Text() {
     return ( 
       <div> 
         <h1>Good {timeOfDay}</h1> // {this is where you can use JS in JSX}    
-        <p style = {styles} >and happy holiday</p> // double curly brace because: color is object + in JS
+        <p style = {styles} >and happy holiday</p> 
       </div>
     ) 
 }
