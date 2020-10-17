@@ -25,7 +25,7 @@ function Text() {
     
     return ( 
       <div> 
-        <h1>Good {timeOfDay}</h1> // {this is where you can use JS in JSX}    
+        <h1>Good {timeOfDay}</h1> // in order to use JS in React (JSX): write the function/variable in curly braces
         <p style = {styles} >and happy holiday</p> 
       </div>
     ) 
