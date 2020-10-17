@@ -339,5 +339,5 @@ mycar = new Car("Ford");
 import FunctionName from "./FileName"
 
 // in order to allow element to get imported 
-export FunctionName from "./FileName"
+export default FunctionName
 
