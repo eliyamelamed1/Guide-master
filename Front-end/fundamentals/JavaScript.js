@@ -334,3 +334,10 @@ class Car
 mycar = new Car("Ford");      
 
                
+                    /* Import & Export */
+// in order to use elements from different modules 
+import FunctionName from "./FileName"
+
+// in order to allow element to get imported 
+export FunctionName from "./FileName"
+
