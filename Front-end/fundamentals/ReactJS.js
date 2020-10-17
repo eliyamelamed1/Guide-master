@@ -35,3 +35,33 @@ function Text() {
 ReactDom.render( <Text />, document.getElementById("IdName") )
 
 
+                      /* Reusable components */
+function Post(data) {
+  return (
+    <div className = "post" > // in JSX use "className" to work with css, instead of "class"
+      <img src = {data.ImageUrl} />
+      <h3> {data.FullName} </h3>
+      <p> {data.PhoneNumber} </p>
+    </div>
+ ) 
+} 
+
+function HomePage() {
+  return (
+    <div className = "post-container" >
+    
+      <Post 
+        ImageUrl = "cat-photo-url"
+        FullName = "eliya melamed"
+        PhoneNumber = 0544967169   
+      />
+      
+      <Post 
+        ImageUrl = "dog-photo-url"
+        FullName = "Aviv barak"
+        PhoneNumber = 0544758379  
+      />
+     
+    </div>
+  )
+}
