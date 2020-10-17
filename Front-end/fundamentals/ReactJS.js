@@ -35,6 +35,9 @@ function Text() {
 ReactDom.render( <Text />, document.getElementById("IdName") )
 
 
+
+
+
                       /* Reusable components */
 function Post(data) {
   return (
