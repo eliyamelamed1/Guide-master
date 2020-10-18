@@ -255,8 +255,37 @@ try
     message.innerHTML = "Input is " + err;
 }
   
+                      /* Classes */
+// creating class                     
+class Car 
+{
+  constructor(brand)
+  {
+    this.carname = brand;
+  }
+}
 
-               /* let ,const and var */  
+// creating class object
+mycar = new Car("Ford");      
+
+               
+                    /* Import & Export */
+// in order to use elements from different modules 
+import FunctionName from "./FileName"
+
+// in order to allow element to get imported 
+export default FunctionName
+
+
+                         /* ES6 */
+
+// The map() method creates a new array with the results of calling a function for every array element.
+// The map() method calls the provided function once for each element in an array, in order.
+var numbers = [4, 9, 16, 25];
+var x = numbers.map(Math.sqrt) 
+
+
+     /* let ,const and var */  
                  
 /* Differences between let & var */             
 
@@ -320,24 +349,3 @@ car.owner = "Johnson";
 car = {type:"Volvo", model:"EX60", color:"red"};  // ERROR
 
  
-                      /* Classes */
-// creating class                     
-class Car 
-{
-  constructor(brand)
-  {
-    this.carname = brand;
-  }
-}
-
-// creating class object
-mycar = new Car("Ford");      
-
-               
-                    /* Import & Export */
-// in order to use elements from different modules 
-import FunctionName from "./FileName"
-
-// in order to allow element to get imported 
-export default FunctionName
-
