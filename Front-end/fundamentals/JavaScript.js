@@ -288,30 +288,20 @@ var x = numbers.map(Math.sqrt)
      /* let ,const and var */  
                  
 /* Differences between let & var */             
+// var is global variables 
+// let & const are block variable 
 
+var x = "Hello World";
 {
   console.log(x);
 }
-var x = "Hello World";
 // the console will show - - > Hello Woeld
 
+let y = "Hello World"  
 {
   console.log(y);
 }
-let y = "Hello World" 
 // Error
- 
-
-
-{
-  var x = 2;
-}
-// x CAN be used here
-
-{
-  let y = 2;
-}
-// y CANT be used here
 
 
 // Redeclaring Variables 
