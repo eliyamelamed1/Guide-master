@@ -1,0 +1,8 @@
+open the Terminal in the cd of the project
+than write:
+
+npm install 
+- it will install node_modules
+
+npm start
+- in order to activate the project
