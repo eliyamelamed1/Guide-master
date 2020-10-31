@@ -6,7 +6,7 @@ import RoomsContainer from '../components/RoomsContainer';
 const Rooms = () => {
     return (
     <div>
-        <Hero hero="roomsHero" /> {/* ???? */}  
+        <Hero hero="roomsHero" /> {/* Content */}  
         <Banner title="Available Rooms" subtitle="Best in Class Room"> {/* Banner */}
                 <Link to="/" className="btn btn-warning"> RETURN HOME </Link> {/* Button */}
         </Banner>

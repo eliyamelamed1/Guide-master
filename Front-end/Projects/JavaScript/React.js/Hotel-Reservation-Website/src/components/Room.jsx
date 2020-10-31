@@ -1,10 +1,12 @@
+// 4 : data => context => FeaturedRooms => Room
+
 import React from 'react';
 import {Link} from 'react-router-dom';
 import defaultImg from '../images/room-1.jpeg';
 import PropTypes from 'prop-types';
 
 export default function Room({room}) {
-    const { name , slug, images, price } = room;
+    const { name , slug, images, price } = room; // name = room.name etc...
     return (
         <div className="col-md-4 col-12 mx-auto p-2">
             <div className="card shadow-lg border-0 room">

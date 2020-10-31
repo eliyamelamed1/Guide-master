@@ -1,13 +1,16 @@
+// 2 : data => context
 import React, { Component } from 'react'
-import items from './data';
+import items from './data'; // you can use everyname you want instead of items
+
 const RoomContext = React.createContext();
 
 
 export default class RoomProvider extends Component {
+    // Creating Components
     state={
-        rooms: [],
-        sortedRooms: [],
-        featuredRooms: [],
+        rooms: [], // all the rooms 
+        sortedRooms: [], // rooms after filter [rooms => search rooms]
+        featuredRooms: [], // featured rooms in the bottom of home page [home => featured rooms] 
         loading: true,
         type: 'all',
         capacity: 1,
@@ -19,13 +22,17 @@ export default class RoomProvider extends Component {
         breakfast: false,
         pets: false
     };
+
+    
     componentDidMount(){
-        let rooms = this.formatData(items);
-        let featuredRooms = rooms.filter(room => room.featured === true);
-        let maxPrice = Math.max(...rooms.map(item => item.price));
-        let maxSize = Math.max(...rooms.map(item => item.size));
+        let rooms = this.formatData(items); // Saving the accessed data into a variable
+        let featuredRooms = rooms.filter(room => room.featured === true); // each item have featuredRoom property equal to True/False, if the property equal to True he will be added to the array
+        let maxPrice = Math.max(...rooms.map(item => item.price)); // function to save the highest price into a variable
+        let maxSize = Math.max(...rooms.map(item => item.size)); // function to save the lowest price into a variable
+        
+        // modify the data
         this.setState({
-            rooms,
+            rooms, // rooms , is the same as rooms: rooms in es6
             featuredRooms,
             sortedRooms:rooms,
             loading: false,
@@ -34,6 +41,8 @@ export default class RoomProvider extends Component {
             maxSize
         })
     }
+    
+    // Accessing data
     formatData(items){
         let tempItems = items.map(item =>{
         let id = item.sys.id;
@@ -43,11 +52,13 @@ export default class RoomProvider extends Component {
         });
         return tempItems;
     }
+
     getRoom = (slug) => {
         let tempRooms = [...this.state.rooms];
         const room = tempRooms.find((room)=>room.slug === slug);
         return room;
     }
+
     handleChange = event => {
         const target = event.target;
         const value = target.type ==='checkbox' ? target.checked:target.value;
@@ -57,6 +68,7 @@ export default class RoomProvider extends Component {
             [name]: value
         },this.filterRooms)
     }
+    
     filterRooms = () => {
         let{
             rooms,type,capacity,price,minSize,maxSize,breakfast,pets
@@ -97,12 +109,14 @@ export default class RoomProvider extends Component {
     }
     render() {
         return (
-            <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom ,handleChange: this.handleChange }}>
+            // a remainder that RoomContext was defined at the top of the page
+            <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom ,handleChange: this.handleChange }}> {/* Passing data to {FeaturedRooms component} */}
                 {this.props.children}
             </RoomContext.Provider>
         )
     }
 }
+
 const RoomConsumer = RoomContext.Consumer;
 
 export function withRoomConsumer(Component){

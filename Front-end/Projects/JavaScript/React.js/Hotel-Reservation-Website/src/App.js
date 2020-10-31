@@ -19,11 +19,11 @@ function App() {
       <BrowserRouter> {/* Routing to Chosen PATHS */}
         <Navbar/> {/* Navigation bar */}
         <Switch> {/* route case for each page */}
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Home} /> 
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/rooms/" component={Rooms}/>
-          <Route exact path="/rooms/:slug" component={SingleRoom} />
+          <Route exact path="/rooms/:slug" component={SingleRoom} /> 
           <Route exact path="/booknow/:slug" component={Booknow} />
           <Route component={Error}/>
         </Switch>
