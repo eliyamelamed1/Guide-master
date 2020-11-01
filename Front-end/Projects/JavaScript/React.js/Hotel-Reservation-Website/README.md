@@ -1,3 +1,32 @@
+https://www.youtube.com/watch?v=l0JbuMVXaTs&ab_channel=CodingAddict
+
+
+21:14 Pages
+25:40 React Router
+37:20 Navbar (React Icons)
+52:26 Hero
+59:32 Banner
+1:10:36 Services Section
+1:23:30 Context API
+1:51:20 Importing Data
+2:09:50 Room Component
+2:31:21 Single Room Page
+2:55:44 Styled Components
+3:12:24 Room Images
+3:17:52 Room Info
+3:25:52 Rooms Page
+3:41:26 Higher Order Component
+3:50:22 RoomList Component  
+3:55:46 RoomFilter Component
+4:03:46 useContext Hook
+4:13:32 Get Unique Values
+4:32:08 Filtering by capacity
+4:41:36 Filtering by price
+4:48:06 Filtering by size, breakfast and pets
+4:59:18 Contentful
+5:40:39 Netlify
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
