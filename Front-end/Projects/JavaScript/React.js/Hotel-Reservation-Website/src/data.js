@@ -1,4 +1,4 @@
-// 1
+// 1 : data => context => FeaturedRooms => Room  => SingleRoom
 // data 
 
 import room1 from "./images/details-1.jpeg";

@@ -1,4 +1,4 @@
-// 4 : data => context => FeaturedRooms => Room
+// 4 : data => context => FeaturedRooms => Room  => SingleRoom
 // Room template page - gets room props and turn it into a visual room card (display image, price, name)
 
 import React from 'react';

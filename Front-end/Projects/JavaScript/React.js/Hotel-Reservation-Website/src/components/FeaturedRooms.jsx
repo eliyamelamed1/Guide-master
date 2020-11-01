@@ -1,4 +1,4 @@
-// 3 : data => context => FeaturedRooms
+// 3 : data => context => FeaturedRooms => Room  => SingleRoom
 // feature rooms section in the bottom of the Home page
 
 import React, { Component } from 'react'
@@ -10,7 +10,7 @@ import Title from './Title';
 export default class FeaturedRooms  extends Component {
     static contextType = RoomContext;
     render() {
-        let { loading, featuredRooms } = this.context; // a remainder that in es6 let {variable} = this.context , is the same as let variable = this.context.variable
+        let { loading, featuredRooms } = this.context; // a remainder that in es6 let/const {variable} = this.something , is the same as let variable = this.something.variable
         
         // Passing the featuredRooms objects to the Room componnent
         // the Room component template page - that get room props and turn it into a visual room card (display image, price, name)

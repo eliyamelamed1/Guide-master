@@ -1,4 +1,5 @@
-// 2 : data => context
+// 2 : data => context => FeaturedRooms => Room  => SingleRoom
+// TODO reserach on React.createContext()
 
 
 import React, { Component } from 'react'
@@ -47,7 +48,7 @@ export default class RoomProvider extends Component {
     
     // Accessing data
     formatData(items){
-        let tempItems = items.map(item =>{
+        let tempItems = items.map(item =>{ 
         let id = item.sys.id;
         let images = item.fields.images.map(image => image.fields.file.url);
         let room = {...item.fields,images,id}
@@ -56,9 +57,10 @@ export default class RoomProvider extends Component {
         return tempItems;
     }
 
+     
     getRoom = (slug) => {
-        let tempRooms = [...this.state.rooms];
-        const room = tempRooms.find((room)=>room.slug === slug);
+        let tempRooms = [...this.state.rooms]; // this way tempRooms is equal to rooms but not sync with him 
+        const room = tempRooms.find((room)=>room.slug === slug); // find the room that his slug property (room.slug) is equal to the slug that have been passed when calling the function 
         return room;
     }
 
@@ -110,10 +112,11 @@ export default class RoomProvider extends Component {
             sortedRooms: tempRooms
         })
     }
+
     render() {
         return (
             // a remainder that RoomContext was defined at the top of the page
-            <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom ,handleChange: this.handleChange }}> {/* Passing data to {FeaturedRooms component} */}
+            <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom ,handleChange: this.handleChange }}> {/* making this components available */}
                 {this.props.children}
             </RoomContext.Provider>
         )
