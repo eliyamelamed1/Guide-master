@@ -7,8 +7,9 @@ import {FaRegMeh} from 'react-icons/fa';
 export default function Error() {
     return (
         <>
-        <Hero hero="roomsError" /> {/* Image */}
-        <Banner title="ERROR 404 NOT FOUND" subtitle="You are lost !! ITs dark everywhere"> {/* Banner Component */}
+        {/* passing props to all the components */}
+        <Hero hero="roomsError" /> {/* passing props to Hero component */} {/* Image */}
+        <Banner title="ERROR 404 NOT FOUND" subtitle="You are lost !! ITs dark everywhere"> {/* passing props to Banner component */} {/* Banner Component */}
                 <FaRegMeh className="lost" /> {/* smiley icon */}
                 <Link to="/" className="btn btn-warning"> RETURN HOME </Link> {/* Button */}
         </Banner>

@@ -1,4 +1,6 @@
 // 2 : data => context
+
+
 import React, { Component } from 'react'
 import items from './data'; // you can use everyname you want instead of items
 
@@ -24,6 +26,7 @@ export default class RoomProvider extends Component {
     };
 
     
+    // after all the elements of the page is rendered correctly, this method is called
     componentDidMount(){
         let rooms = this.formatData(items); // Saving the accessed data into a variable
         let featuredRooms = rooms.filter(room => room.featured === true); // each item have featuredRoom property equal to True/False, if the property equal to True he will be added to the array

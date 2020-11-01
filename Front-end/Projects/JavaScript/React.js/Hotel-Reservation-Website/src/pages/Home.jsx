@@ -8,6 +8,7 @@ import FeaturedRooms from '../components/FeaturedRooms';
 export default function Home() {
     return (
         <>
+        {/* passing props to all the components */}
         <Hero /> {/* Image */}
         <Banner title="Luxurious Rooms" subtitle="deluxe rooms starting at 299$"> {/* Banner Component */}
                 <Link to="/rooms" className="btn btn-primary"> Our Rooms </Link> {/* Button */}
