@@ -1,0 +1,91 @@
+-----Django-------
+http://127.0.0.1:8000/ - website local location
+
+[pipenv]
+$ pip3 install pipenv - install pipenv
+
+[django installation]
+$ pipenv install django~=3.1.0 - Install django
+
+[virtual enviorment]
+$ python -m venv ll_env -------- creating Virtual enviorment folder - DONT USE
+$ pipenv shell -- enter virtual enviorment
+$ exit - deactivate virtual enviorment
+
+[start project-app]
+$ django-admin startproject config . -start project (Inside virtual enviorment folder)
+$ python manage.py startapp appName - create app 
+
+[run server]
+$ python manage.py runserver - Run server
+control + c ---- Quitting server
+
+[create superuser] -- make sure to migrate changes before doing so
+$ python manage.py createsuperuser
+
+[tests]
+$ python manage.py test - run tests
+
+HTTP 200 - working
+HTTP 404 - error
+
+
+-Django CheckList-
+when Creating new app in a project make sure to update INSTALLED_APPS in config/settings
+
+when Creating new template folder in a project make sure to update TEMPLATES in config/settings
+
+whenever we create or modify existing model we will need to update django:
+$ python manage.py makemigrations appName - (including appName will migrations of this specific app)
+$ python manage.py migrate
+
+---Django notes---
+
+• admin.py is a configuration file for the built-in Django Admin app
+• apps.py is a configuration file for the app itself
+• migrations/ keeps track of any changes to our models.py file so our database and
+models.py stay in sync
+• models.py is where we define our database models which Django automatically translates
+into database tables
+• tests.py is for our app-specific tests
+• views.py is where we handle the request/response logic for our web app
+
+Django request/response cycle:
+URL -> View -> Model (typically) -> Template
+
+Remember that Django automatically sets objects id for us
+
+-----Git
+"Configuration"
+$ git config --global user.name "Your Name" - Enter your name
+$ git config --global user.email "yourname@email.com" - Enter your email
+
+$ git init
+$ git status - displa changes since last git commit
+$ git add -A - add all the files to git (A = all)
+$ git commit -m "initial commit" - save files with a comment (m = massage)
+$ git remote add origin https://github.com/wsvincent/hello-world.git - linking to repository with link (every repo have a different link)
+$ git push -u origin master - push changes to git
+
+--------Heroku------
+donwload and install heroku from their website
+$ heroku login - enter your email and password
+
+deployment checklist:
+• install Gunicorn - $ pipenv install gunicorn==19.9.0
+• create a Procfile file and add text to file - web: gunicorn config.wsgi --log-file -
+• update ALLOWED_HOSTS in config/settings.py to - ['*']
+
+$ heroku create
+$ heroku config:set DISABLE_COLLECTSTATIC=1 -
+$ git push heroku master
+$ heroku ps:scale web=1
+$ heroku open
+
+-----CMD-----
+
+• cd (change down a directory)
+• cd .. (change up a directory)
+• dir (list files in your current directory on Windows)
+• pwd (print working directory)
+• mkdir (make directory)

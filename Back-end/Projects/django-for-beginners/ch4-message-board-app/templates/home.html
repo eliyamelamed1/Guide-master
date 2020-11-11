@@ -1,0 +1,8 @@
+<h1>Message board homepage</h1>
+<ul>
+  {% for post in all_posts_list %} 
+    <li>{{ post.text }}</li>
+  {% endfor %}
+</ul>
+
+<!-- all_posts_list should be object_list but changed in the views.py by the command -> context_object_name = 'all_posts_list'-->
