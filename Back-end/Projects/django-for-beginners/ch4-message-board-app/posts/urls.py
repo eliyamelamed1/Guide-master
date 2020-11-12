@@ -7,4 +7,4 @@ urlpatterns = [
 ]
 
 
-# path(url, viewName.as_view, name='variableName')
+# path (url, viewName.as_view, name='variableName')

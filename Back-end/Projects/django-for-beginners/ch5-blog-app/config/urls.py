@@ -5,3 +5,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')), # new
 ]
+
+
+# path (url, ViewClassName.as_view, name='variableName')
+# path (url, include(file.urls))
