@@ -1,0 +1,49 @@
+URL -> View -> Model (typically) -> Template
+--------admin
+admin.site.register(Post) # display our posts app and its database model Post on the admin page
+
+
+
+
+--------urls 
+# path (url, ViewClassName.as_view, name='variableName') # linking a viewModel and a url location, (*=optinal) saving the whole path on a variable 
+# path ('url/<int:pk>/', BlogDetailView.as_view(), name='post_detail') # linking url base on object.pk/object.id
+# path (url, include(file.urls)) # linking to url a file
+
+
+
+
+----------views
+DetailView # will provide a context object we can use in our template called either object or the lowercased name of our model
+
+class HomePageView(ListView):
+    model = Post # linking to a the model
+    template_name = 'home.html' # linking to an html file
+
+
+
+
+#TODO
+--------models
+# Declaring post attributes
+class Post(models.Model):
+    title = models.CharField(max_length=200) # limits the length to 200 characters
+
+    author = models.ForeignKey ( # ForeignKey- "allows for a many-to-one relationship." - a given user can be the author of many different blog posts but not the other way around.
+        'auth.User', # The reference is to the built-in User model that Django provides for authentication
+        on_delete=models.CASCADE, # TODO
+    )
+    body = models.TextField() #  TextField based on the user’s text
+
+    def __str__(self):
+        return self.title # display the object title as the object name on the admin panel
+
+
+
+
+-----------templates
+{% extends 'base.html' %}
+<a href="{% url 'post_detail' post.pk %}"></a> # linking button to a view with a object id
+
+
+
