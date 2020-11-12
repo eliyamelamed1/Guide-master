@@ -12,5 +12,5 @@ class ArticleAdmin(admin.ModelAdmin): # new
     ]
 
 
-admin.site.register(Article, ArticleAdmin) # new
+admin.site.register(Article, ArticleAdmin) # display apps and its database's model Post on the admin page
 admin.site.register(Comment)

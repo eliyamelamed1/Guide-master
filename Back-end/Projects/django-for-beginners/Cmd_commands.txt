@@ -10,7 +10,7 @@ http://127.0.0.1:8000/ # website local location
 />
 
 [virtual enviorment]
-<$ python -m venv ll_env # creating Virtual enviorment folder - DONT USE
+<$ python -m venv ll_etnv # creating Virtual enviorment folder - DONT USE
 $ pipenv shell # enter virtual enviorment
 $ exit # deactivate virtual enviorment
 />
@@ -41,18 +41,6 @@ HTTP 404 - error
 $ python manage.py makemigrations appName # (including appName will migrations of this specific app)
 $ python manage.py migrate
 />
-
-<when Creating new app in a project make sure to update INSTALLED_APPS in config/settings
-/>
-
-<when Creating new template-folder in a project make sure to update TEMPLATES in config/settings
-/>
-
-<when Creating new static-folder in a project make sure to update static settings in config/settings
-STATIC_URL = '/static/' # STATIC_URL is the URL location of static files in our project, aka at /static/.
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # configure where to look for static files beyond just app/static folder
-
-
 
 ---Django notes---
 • admin.py is a configuration file for the built-in Django Admin app

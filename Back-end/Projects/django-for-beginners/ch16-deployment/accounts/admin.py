@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
-
+# function 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
@@ -18,4 +18,4 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin) # display apps and its database's model Post on the admin page

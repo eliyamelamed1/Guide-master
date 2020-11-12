@@ -9,11 +9,12 @@ from .views import (
 
 urlpatterns = [
     path('<int:pk>/edit/',
-         ArticleUpdateView.as_view(), name='article_edit'), # new
+         ArticleUpdateView.as_view(), name='article_edit'),  # linking viewModel to a url, url is base on object.pk/object.id - used in templates/file.html <a href="{% url 'variableName' object.pk %}"></a>
     path('<int:pk>/',
-         ArticleDetailView.as_view(), name='article_detail'), # new
+         ArticleDetailView.as_view(), name='article_detail'), 
     path('<int:pk>/delete/',
-         ArticleDeleteView.as_view(), name='article_delete'), # new
-    path('new/', ArticleCreateView.as_view(), name='article_new'), # new
+         ArticleDeleteView.as_view(), name='article_delete'), # linking a viewModel and a url location, and saving the whole path on a variab
+    path('new/', ArticleCreateView.as_view(), name='article_new'), 
     path('', ArticleListView.as_view(), name='article_list'),
 ]
+

@@ -117,8 +117,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # new
+STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # configur which is the absolute location of these collected files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # which is the file storage engine used by collectstatic - Django’s collectstatic command which compiles all static files throughout the project into a singe directory suitable for deployment.
 
 AUTH_USER_MODEL = 'accounts.CustomUser' # new
 
