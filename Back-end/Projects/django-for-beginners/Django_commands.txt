@@ -19,7 +19,13 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 />
 
+<when creating custom User Model (app) conigure Django config/settings.py to use our new custom user model
+AUTH_USER_MODEL = 'appName.CustomUser' # 
+/>
 
+<when installing django-crispy-forms make sure to update config/settings.py
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+/>
 
 
 Static Files

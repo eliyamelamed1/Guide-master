@@ -10,12 +10,11 @@ http://127.0.0.1:8000/ # website local location
 />
 
 [virtual enviorment]
-<$ python -m venv ll_etnv # creating Virtual enviorment folder - DONT USE
-$ pipenv shell # enter virtual enviorment
+<$ pipenv shell # enter virtual enviorment
 $ exit # deactivate virtual enviorment
 />
 
-[start project-app]
+[start project/app]
 <$ django-admin startproject config . # start project (Inside virtual enviorment folder)
 $ python manage.py startapp appName #  create app 
 $ python manage.py migrate
@@ -42,6 +41,20 @@ $ python manage.py makemigrations appName # (including appName will migrations o
 $ python manage.py migrate
 />
 
+
+[Static]
+<to include css in production use:
+$ python manage.py collectstatic # collectstatic command must be run to compile the css into this staticfiles folder used in production
+$ pipenv install whitenoise==5.1.0 # serve these compiled static files in production,
+• add whitenoise to the INSTALLED_APPS above the built-in staticfiles app
+INSTALLED_APPS = [ 'whitenoise.runserver_nostatic', ]
+• under MIDDLEWARE add a new line for WhiteNoiseMiddleware
+MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
+• change STATICFILES_STORAGE to use WhiteNoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+• run collectstatic cmd command one more time to use whitenoise Since our STATICFILES_STORAGE method has changed
+/>
+
 ---Django notes---
 • admin.py is a configuration file for the built-in Django Admin app
 • apps.py is a configuration file for the app itself
@@ -59,7 +72,8 @@ URL -> View -> Model (typically) -> Template
 when object is created Django automatically adds an auto-incrementing primary key (pk/id) to his database model
 
 
-
+[Bootstraps]
+$ pipenv install django-crispy-forms==1.9.2 # django-crispy-forms.
 
 
 
@@ -92,19 +106,35 @@ donwload and install heroku from their website
 $ heroku login - enter your email and password
 
 deployment checklist:
-• install Gunicorn - $ pipenv install gunicorn==19.9.0
+• install Gunicorn 
+$ pipenv install gunicorn==19.9.0
 • create a Procfile file and add text to file - web: gunicorn config.wsgi --log-file -
-• update ALLOWED_HOSTS in config/settings.py to - ['*']
+• update ALLOWED_HOSTS in config/settings.py to - ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
-$ heroku create
+
+
+• login to your heroku account
+$ heroku login
+• create container for your app
+$ heroku create appName
+• configure git to push to your app repo
+$ heroku git:remote -a appName
+• (if you use css in production use this command) - make Heroku run Django’s collectstatic command automatically
+$ heroku create dfb-blog 
+ELSE 
 $ heroku config:set DISABLE_COLLECTSTATIC=1 -
+
+• check config/setting.py SECRET_KEY = env.str("SECRET_KEY") and enter it:
+$ heroku config:set SECRET_KEY=''
+
+• push our code to Heroku
 $ git push heroku master
+
+• choose your website scale
 $ heroku ps:scale web=1
+
+• open the website url
 $ heroku open
-
-
-
-
 
 
 
@@ -117,3 +147,6 @@ $ heroku open
 • dir (list files in your current directory on Windows)
 • pwd (print working directory)
 • mkdir (make directory)
+
+
+
