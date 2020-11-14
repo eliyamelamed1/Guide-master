@@ -8,7 +8,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = ('username', 'email', 'age',) # fields to fill on sign-up
+        fields = ('username', 'email', 'age') # fields to fill on sign-up
 
 # function to change user attributes
 class CustomUserChangeForm(UserChangeForm):
