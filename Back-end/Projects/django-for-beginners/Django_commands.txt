@@ -6,17 +6,12 @@ URL -> View -> Model (typically) -> Template
 TIME_ZONE = 'America/New_York'
 
 -------------[Django CheckList] 
+when object is created Django automatically adds an auto-incrementing primary key (pk/id) to his database model
+
 <when Creating new app in a project make sure to update INSTALLED_APPS in config/settings
 />
 
 <when Creating new template-folder in a project make sure to update TEMPLATES in config/settings
-/>
-
-<when Creating new static-folder in a project make sure to update static settings in config/settings
-STATIC_URL = '/static/' # STATIC_URL is the URL location of static files in our project, aka at /static/.
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # configure where to look for static files beyond just app/static folder
-STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
-STATICFILES_STORAGE ='django.contrib.staticfiles.storage.StaticFilesStorage' 
 />
 
 <when Creating login/logout page make sure to add a success login redirect in config/settings.py
@@ -24,7 +19,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 />
 
-<when creating custom User Model (app) conigure Django config/settings.py to use our new custom user model
+<when creating an app that define a new custom User Model conigure Django config/settings.py to use our new custom user model
 AUTH_USER_MODEL = 'appName.CustomUser' # 
 />
 
@@ -49,10 +44,9 @@ STATICFILES_DIRS to it in our config/settings.py file, and adding {% load static
 base.html template. But since Django won’t serve static files in production, we need a few extra
 steps now.
 The first change is to use Django’s collectstatic command which compiles all static files
-throughout the project into a singe directory suitable for deployment. Second, we must set the
-STATIC_ROOT configuration, which is the absolute location of these collected files, to a folder
-called staticfiles. And third, we need to set STATICFILES_STORAGE, which is the file storage
-engine used by collectstatic.
+throughout the project into a singe directory suitable for deployment
+. Second, we must set the
+STATIC_ROOT configuration, which is  And third, we need to set STATICFILES_STORAGE, 
 Here is what the updated config/settings.py file should look like:
 
 

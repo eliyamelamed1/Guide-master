@@ -115,9 +115,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # configur which is the absolute location of these collected files
+STATIC_URL = '/static/' # # STATIC_URL is the URL location of static files in our project, aka at /static/.
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # configure where to look for static files beyond just app/static folder
+STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # configure which is the absolute location of these collected files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # which is the file storage engine used by collectstatic - Django’s collectstatic command which compiles all static files throughout the project into a singe directory suitable for deployment.
 
 AUTH_USER_MODEL = 'accounts.CustomUser' # new

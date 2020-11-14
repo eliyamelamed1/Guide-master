@@ -46,10 +46,8 @@ $ python manage.py migrate
 ---Django notes---
 • admin.py is a configuration file for the built-in Django Admin app
 • apps.py is a configuration file for the app itself
-• migrations/ keeps track of any changes to our models.py file so our database and
-models.py stay in sync
-• models.py is where we define our database models which Django automatically translates
-into database tables
+• migrations/ keeps track of any changes to our models.py file so our database and models.py stay in sync
+• models.py is where we define our database models which Django automatically translates into database tables
 • tests.py is for our app-specific tests
 • views.py is where we handle the request/response logic for our web app
 
@@ -57,10 +55,7 @@ Django request/response cycle:
 URL -> View -> Model (typically) -> Template
 
 
-when object is created Django automatically adds an auto-incrementing primary key (pk/id) to his database model
-
 • 3rd party softwares
-
 [Whitenoise & staticfiles] - to include css in production use:
 <
 • create a new static folder in the same directory as manage.py Then add folders for css, javascript, and images.
@@ -78,10 +73,11 @@ INSTALLED_APPS = [ 'whitenoise.runserver_nostatic', ]
 • in MIDDLEWARE add a new line for WhiteNoiseMiddleware
 MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
 
-• change STATICFILES_STORAGE to use WhiteNoise and add the folowing lines
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+• change this static settings to use WhiteNoise and add the folowing lines
+STATIC_URL = '/static/' # # STATIC_URL is the URL location of static files in our project, aka at /static/.
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # configure where to look for static files beyond just app/static folder
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # the absolute location of these collected files, to a folder called staticfiles.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # # which is the file storage engine used by collectstatic.
 
 • run collectstatic cmd command to use whitenoise Since our STATICFILES_STORAGE method has changed
 $ python manage.py collectstatic # collectstatic command must be run to compile the css into this staticfiles folder used in production
@@ -103,12 +99,8 @@ $ pipenv install gunicorn==19.9.0
 and create a file named 'Procfile' and add text to file:     web: gunicorn config.wsgi --log-file -
 
 
---------Heroku------
-donwload and install heroku from their website
-$ heroku login - enter your email and password
-
-
-[professional website deployment checklist]
+-------professional website deployment checklist------
+[Setting up for deployment]
 • finish Environment Variables steps
 
 • set DEBUG set to False
@@ -127,7 +119,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # .env
 export SECRET_KEY=TypeHereSecretKey
 
-• update DATABASES to use SQLite locally and PostgreSQL in production ( SQLite doesnt support production)
+• install Psycopg & update DATABASES to use SQLite locally and PostgreSQL in production ( SQLite doesnt support production)
 # config/settings.py
 DATABASES = {
 "default": env.dj_db_url("DATABASE_URL")
@@ -139,32 +131,34 @@ export DATABASE_URL=sqlite:///db.sqlite3
 
 • finish Gunicorn Steps
 
-
-
-
-
-• login to your heroku account
+[Deploying using Heroku]
+• donwload and install heroku from their website
+• login to your Heroku account (id you dont have an account sign up on their website)
 $ heroku login - enter your email and password
 
-• create a container for your app
-$ heroku create appName
+• create a container for your app to live in
+$ heroku create
+or 
+$ heroku create AppName # to determine the app name NOTE: it must be a unique name on Heroku
 
 • configure git to push to your app repo
 $ heroku git:remote -a appName
 
-• (if you use css in production use this command) - make Heroku run Django’s collectstatic command automatically
-$ heroku create dfb-blog 
-ELSE 
-$ heroku config:set DISABLE_COLLECTSTATIC=1 -
+• Run the following command to create this new database: (  For a learning project like this, the free hobby-dev tier is more than enough )
+$ heroku addons:create heroku-postgresql:hobby-dev
 
-• check config/setting.py SECRET_KEY = env.str("SECRET_KEY") and enter it:
-$ heroku config:set SECRET_KEY=''
+• check config/setting.py or in .env for SECRET_KEY and enter it:
+$ heroku config:set SECRET_KEY='EnterSecretKey'
 
 • push our code to Heroku
 $ git push heroku master
 
 • choose your website scale
 $ heroku ps:scale web=1
+
+• The same process used locally of running migrate, creating a superuser account need to be followed again
+$ heroku run python manage.py migrate
+$ heroku run python manage.py createsuperuser
 
 • open the website url
 $ heroku open
