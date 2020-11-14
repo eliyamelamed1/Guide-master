@@ -70,8 +70,11 @@ method=post # send information
 method=get # get information 
 {% csrf_token %} # provide security
 {{ form.as_p }} # display/render form/view attributes/fields as paragraph  (for instance ArticleUpdateView attributes are: 'title', 'body')
+OR
+{% load crispy_forms_tags %} # import crispy forms to the template
+{{ form|crispy }} # display/render the form/view attributes/fields well designed
 
-=
+
 {% if user.is_authenticated %} # render what's inside the block only if the user is active
 {% else %} # render what's inside the block only if the user isn't active 
 {% endif %} # end if statemant 
