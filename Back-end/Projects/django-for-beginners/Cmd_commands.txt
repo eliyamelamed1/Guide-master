@@ -9,18 +9,18 @@ http://127.0.0.1:8000/ # website local location
 <$ pipenv install django~=3.1.0 # Install django
 />
 
-[virtual enviorment]
-<$ pipenv shell # enter virtual enviorment
-$ exit # deactivate virtual enviorment
-/>
-
 [start project/app]
 <$ django-admin startproject config . # start project (Inside virtual enviorment folder)
 $ python manage.py startapp appName #  create app 
 $ python manage.py migrate
 />
 
-[run server]
+[virtual enviorment]
+<$ pipenv shell # enter virtual enviroment
+$ exit # deactivate virtual enviorment
+/>
+
+[run server] - enter virtual enviroment before running server.
 <$ python manage.py runserver # Run server
 control + c ---- Quitting server
 />
