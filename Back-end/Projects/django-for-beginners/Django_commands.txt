@@ -1,5 +1,10 @@
 URL -> View -> Model (typically) -> Template
 
+# in order to change built in django features, search few words from the feature on django source code on github
+
+# enter time zone in config/settings.py
+TIME_ZONE = 'America/New_York'
+
 -------------[Django CheckList] 
 <when Creating new app in a project make sure to update INSTALLED_APPS in config/settings
 />
@@ -27,6 +32,16 @@ AUTH_USER_MODEL = 'appName.CustomUser' #
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 />
 
+<when enabling email services
+1. signup to an email service for instance - SendGrid
+2. Change config/settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'your_custom_email_account'
+EMAIL_HOST = 'smtp.sendgrid.net' # enter your email
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = 'sendgrid_password' # enter your email
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 Static Files
 Previously, we configured our static files by creating a dedicated static folder, pointing

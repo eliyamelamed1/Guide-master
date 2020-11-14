@@ -46,7 +46,7 @@ $ python manage.py migrate
 <to include css in production use:
 $ python manage.py collectstatic # collectstatic command must be run to compile the css into this staticfiles folder used in production
 $ pipenv install whitenoise==5.1.0 # serve these compiled static files in production,
-• add whitenoise to the INSTALLED_APPS above the built-in staticfiles app
+• add whitenoise to the INSTALLED_APPS *above* the built-in staticfiles app
 INSTALLED_APPS = [ 'whitenoise.runserver_nostatic', ]
 • under MIDDLEWARE add a new line for WhiteNoiseMiddleware
 MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
@@ -115,7 +115,7 @@ $ pipenv install gunicorn==19.9.0
 
 • login to your heroku account
 $ heroku login
-• create container for your app
+• create a container for your app
 $ heroku create appName
 • configure git to push to your app repo
 $ heroku git:remote -a appName

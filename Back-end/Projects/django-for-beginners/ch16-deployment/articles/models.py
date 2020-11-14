@@ -10,7 +10,7 @@ class Article(models.Model):
     body = models.TextField() #  TextField - text box that streches based on the user’s text
     date = models.DateTimeField(auto_now_add=True) # saves the current date & time
     author = models.ForeignKey( # ForeignKey- "allows for a many-to-one relationship." - a given user can be the author of many different blog posts but not the other way around.
-        get_user_model(), # This method will return the currently active user model
+        get_user_model(), # This method will return the the website users 
         on_delete=models.CASCADE,
     )
 
@@ -23,20 +23,22 @@ class Article(models.Model):
         return reverse('article_detail', args=[str(self.id)]) # return an object id to a url path's via varaiableName
 
 
-class Comment(models.Model): # new
-    article = models.ForeignKey(
-        Article,
+class Comment(models.Model): 
+    article = models.ForeignKey(  
+        Article, # Articles can have multiple comments but not the other way around
         on_delete=models.CASCADE,
-        related_name='comments', # new
+        related_name='comments', # Set the name comments to be the name of the entire Comment model. (used in template/article_list.html)
     )
     comment = models.CharField(max_length=140)
     author = models.ForeignKey(
-        get_user_model(),
+        get_user_model(), # a user can have multiple comments but not the other way around
         on_delete=models.CASCADE,
     )
 
+     
     def __str__(self):
-        return self.comment
+        return self.comment 
 
+    # get the url path of -  article_list_url_path 
     def get_absolute_url(self):
-        return reverse('article_list')
+        return reverse('article_list')  

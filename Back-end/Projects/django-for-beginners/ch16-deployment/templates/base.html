@@ -84,4 +84,21 @@ method=get # get information
 
 {% block content %} # on all the files that extends 'base.html' - information passes inside this block is displayed on the location of the 'base.html' block
 {% endblock content %} # end of block
+
+{% for comment in article.comments.all %} 
+# we’re calling article.comments.all which means first look at the article model, then comments which is
+# the related name of the entire Comment model, and select all included.
+
+
+--- posts/views.py ---
+class HomePageView(ListView):
+  model = Post
+  template_name = 'home.html'
+  context_object_name = 'all_posts_list' ------- (change object_name to all_posts_list)
+
+--- templates/home.html ---
+{% for post in all_posts_list %}
+{% endfor %}
+
 -->
+
