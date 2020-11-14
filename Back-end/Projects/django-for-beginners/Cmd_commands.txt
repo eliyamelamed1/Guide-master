@@ -1,3 +1,6 @@
+1
+
+
 -----Django-------
 http://127.0.0.1:8000/ # website local location
 
@@ -174,9 +177,10 @@ $ git config --global user.name "Your Name" - Enter your name
 $ git config --global user.email "yourname@email.com" - Enter your email
 
 $ git init
-$ git status - displa changes since last git commit
+$ git status - display changes since last git commit
 $ git add -A - add all the files to git (A = all)
 $ git commit -m "initial commit" - save files with a comment (m = massage)
+$ git remote rm origin - CLEAR ORIGIN
 $ git remote add origin https://github.com/wsvincent/hello-world.git - linking to repository with link (every repo have a different link)
 $ git push -u origin master - push changes to git
 
