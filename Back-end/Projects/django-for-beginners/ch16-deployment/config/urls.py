@@ -30,4 +30,4 @@ urlpatterns = [
 # link to confirm you are the user owner - templates/registration/password_reset_confirm.html
 # password reset complete - templates/registration/password_reset_complete.html
 
- # modify this file to change email password reset text - templates/registration/password_reset_subject.txt
+# modify this file to change email password reset text - templates/registration/password_reset_subject.txt

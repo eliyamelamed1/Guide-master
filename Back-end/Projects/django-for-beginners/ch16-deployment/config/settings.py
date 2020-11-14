@@ -1,8 +1,9 @@
 from pathlib import Path
 from environs import Env # new
 
-env = Env() # new
-env.read_env() # new
+# autowritten when installed enviorment-variables
+env = Env() 
+env.read_env() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -15,7 +16,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False) # if an environment variable can’t be found, our production setting will be used
+DEBUG = env.bool("DEBUG", default=False) # be True for local development, but set to False in production.
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 

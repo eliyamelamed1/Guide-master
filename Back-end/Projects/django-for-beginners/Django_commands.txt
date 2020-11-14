@@ -8,6 +8,9 @@ TIME_ZONE = 'America/New_York'
 -------------[Django CheckList] 
 when object is created Django automatically adds an auto-incrementing primary key (pk/id) to his database model
 
+<in order to edit/learn about built in features search them on django's source code on github
+/>
+
 <when Creating new app in a project make sure to update INSTALLED_APPS in config/settings
 />
 
@@ -27,7 +30,7 @@ AUTH_USER_MODEL = 'appName.CustomUser' #
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 />
 
-<when enabling email services
+<enabling Email services
 1. signup to an email service for instance - SendGrid
 2. Change config/settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
