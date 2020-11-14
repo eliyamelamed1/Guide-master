@@ -25,9 +25,10 @@ $ python manage.py migrate
 control + c ---- Quitting server
 />
 
-[create superuser] # make sure to migrate changes before doing so
+[create superuser] # Create admin user, make sure to migrate changes before doing so
 <$ python manage.py createsuperuser
 />
+
 
 [tests]
 <$ python manage.py test # run tests
@@ -37,23 +38,10 @@ HTTP 404 - error
 
 [Django CheckList] 
 <whenever we create or modify existing model we will need to update django:
-$ python manage.py makemigrations appName # (including appName will migrations of this specific app)
+$ python manage.py makemigrations appName # (including appName will makemigrations of this specific app)
 $ python manage.py migrate
 />
 
-
-[Static]
-<to include css in production use:
-$ python manage.py collectstatic # collectstatic command must be run to compile the css into this staticfiles folder used in production
-$ pipenv install whitenoise==5.1.0 # serve these compiled static files in production,
-• add whitenoise to the INSTALLED_APPS *above* the built-in staticfiles app
-INSTALLED_APPS = [ 'whitenoise.runserver_nostatic', ]
-• under MIDDLEWARE add a new line for WhiteNoiseMiddleware
-MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
-• change STATICFILES_STORAGE to use WhiteNoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-• run collectstatic cmd command one more time to use whitenoise Since our STATICFILES_STORAGE method has changed
-/>
 
 ---Django notes---
 • admin.py is a configuration file for the built-in Django Admin app
@@ -71,54 +59,99 @@ URL -> View -> Model (typically) -> Template
 
 when object is created Django automatically adds an auto-incrementing primary key (pk/id) to his database model
 
+• 3rd party softwares
+
+[Whitenoise & staticfiles] - to include css in production use:
+<
+• create a new static folder in the same directory as manage.py Then add folders for css, javascript, and images.
+$ mkdir static
+$ mkdir static/css
+$ mkdir static/js
+$ mkdir static/images
+
+• install whitenoise
+$ pipenv install whitenoise==5.1.0 # serve these compiled static files in production,
+
+• add whitenoise to the INSTALLED_APPS *above* the built-in 'django.contrib.staticfiles'
+INSTALLED_APPS = [ 'whitenoise.runserver_nostatic', ]
+
+• in MIDDLEWARE add a new line for WhiteNoiseMiddleware
+MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
+
+• change STATICFILES_STORAGE to use WhiteNoise and add the folowing lines
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+• run collectstatic cmd command to use whitenoise Since our STATICFILES_STORAGE method has changed
+$ python manage.py collectstatic # collectstatic command must be run to compile the css into this staticfiles folder used in production
+/>
+
 
 [Bootstraps]
 $ pipenv install django-crispy-forms==1.9.2 # django-crispy-forms.
 
+[Environment Variables] - .env file
+$ pipenv install 'environs[django]==8.0.0'
+and create .env file
 
+[Psycopg] - a database adapter that lets Python apps talk to PostgreSQL databases
+$ pipenv install psycopg2-binary==2.8.5
 
-
-
-
-
------Git
-"Configuration"
-$ git config --global user.name "Your Name" - Enter your name
-$ git config --global user.email "yourname@email.com" - Enter your email
-
-$ git init
-$ git status - displa changes since last git commit
-$ git add -A - add all the files to git (A = all)
-$ git commit -m "initial commit" - save files with a comment (m = massage)
-$ git remote add origin https://github.com/wsvincent/hello-world.git - linking to repository with link (every repo have a different link)
-$ git push -u origin master - push changes to git
-
-
-
-
-
-
-
+[Gunicorn] - Gunicorn is the production web server
+$ pipenv install gunicorn==19.9.0
+and create a file named 'Procfile' and add text to file:     web: gunicorn config.wsgi --log-file -
 
 
 --------Heroku------
 donwload and install heroku from their website
 $ heroku login - enter your email and password
 
-deployment checklist:
-• install Gunicorn 
-$ pipenv install gunicorn==19.9.0
-• create a Procfile file and add text to file - web: gunicorn config.wsgi --log-file -
-• update ALLOWED_HOSTS in config/settings.py to - ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+
+[professional website deployment checklist]
+• finish Environment Variables steps
+
+• set DEBUG set to False
+# config/settings.py
+DEBUG = env.bool("DEBUG", default=False)
+# .env
+export DEBUG = True
+
+• update ALLOWED_HOSTS 
+# config/settings.py
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+
+• use environment variable for SECRET_KEY ( to keep it a secret)
+# config/settings.py
+SECRET_KEY = env.str("SECRET_KEY")
+# .env
+export SECRET_KEY=TypeHereSecretKey
+
+• update DATABASES to use SQLite locally and PostgreSQL in production ( SQLite doesnt support production)
+# config/settings.py
+DATABASES = {
+"default": env.dj_db_url("DATABASE_URL")
+}
+# .env
+export DATABASE_URL=sqlite:///db.sqlite3
+
+• finish Whitenoise & staticfiles Steps
+
+• finish Gunicorn Steps
+
+
 
 
 
 • login to your heroku account
-$ heroku login
+$ heroku login - enter your email and password
+
 • create a container for your app
 $ heroku create appName
+
 • configure git to push to your app repo
 $ heroku git:remote -a appName
+
 • (if you use css in production use this command) - make Heroku run Django’s collectstatic command automatically
 $ heroku create dfb-blog 
 ELSE 
@@ -137,8 +170,17 @@ $ heroku ps:scale web=1
 $ heroku open
 
 
+-----Git
+"Configuration"
+$ git config --global user.name "Your Name" - Enter your name
+$ git config --global user.email "yourname@email.com" - Enter your email
 
-
+$ git init
+$ git status - displa changes since last git commit
+$ git add -A - add all the files to git (A = all)
+$ git commit -m "initial commit" - save files with a comment (m = massage)
+$ git remote add origin https://github.com/wsvincent/hello-world.git - linking to repository with link (every repo have a different link)
+$ git push -u origin master - push changes to git
 
 -----CMD-----
 

@@ -1,4 +1,7 @@
 .env
 __pycache__/
 db.sqlite3
-.DS_Store # Mac only
+# .DS_Store Mac only
+
+
+# we use this file to determine which files we dont want git to track
