@@ -10,9 +10,13 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm # change form
     model = CustomUser 
     list_display = ['email', 'username', 'age', 'is_staff', ] # attributes to display on the admin
-    fieldsets = UserAdmin.fieldsets + ( # new
+    
+    # be able to change a registered user's age in the admin panel
+    fieldsets = UserAdmin.fieldsets + ( 
         (None, {'fields': ('age',)}),
     )
+
+    # be able to enter age when adding new user in the admin panel 
     add_fieldsets = UserAdmin.add_fieldsets + ( # new
         (None, {'fields': ('age',)}),
     )
