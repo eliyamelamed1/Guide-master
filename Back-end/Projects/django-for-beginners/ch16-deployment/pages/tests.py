@@ -18,7 +18,7 @@ class HomePageTests(SimpleTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
 
-#
+
 class SignupPageTests(TestCase):
 
     username = 'newuser'
