@@ -13,7 +13,7 @@ urlpatterns = [
     path('<int:pk>/',
          ArticleDetailView.as_view(), name='article_detail'), 
     path('<int:pk>/delete/',
-         ArticleDeleteView.as_view(), name='article_delete'), # linking a viewModel and a url location, and saving the whole path on a variab
+         ArticleDeleteView.as_view(), name='article_delete'), # linking a viewModel and a url location, and saving the whole path on a variabel
     path('new/', ArticleCreateView.as_view(), name='article_new'), 
     path('', ArticleListView.as_view(), name='article_list'),
 ]
