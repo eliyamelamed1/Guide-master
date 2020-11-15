@@ -59,6 +59,7 @@ URL -> View -> Model (typically) -> Template
 [Whitenoise & staticfiles] - to include css in production use:
 <
 • create a new static folder in the same directory as manage.py Then add folders for css, javascript, and images.
+for instance:
 $ mkdir static
 $ mkdir static/css
 $ mkdir static/js
