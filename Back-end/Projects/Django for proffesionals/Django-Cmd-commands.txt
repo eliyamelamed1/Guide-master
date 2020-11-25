@@ -56,12 +56,20 @@ AUTHENTICATION_BACKENDS = (
 	'django.contrib.auth.backends.ModelBackend',
 	'allauth.account.auth_backends.AuthenticationBackend',
 )
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' (switch conosle with: smtp, if you have SMTP server configured)
-• change LOGOUT_REDIRECT_URL = 'home' to:
-ACCOUNT_LOGOUT_REDIRECT = 'home'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' (switch conosle with: smtp, if you have SMTP server configured) And then to configure EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT, and EMAIL_USE_TLS based on the instructions from your email provider as environment variables.
+change LOGOUT_REDIRECT_URL = 'home' to: ACCOUNT_LOGOUT_REDIRECT = 'home'
 />
 
-
+[Pillow - enable image uploads]
+$ pipenv install pillow==7.2.0
+• update config/settings.py
+MEDIA_URL = '/media/' # the URL we can use in our templates for the files
+MEDIA_ROOT = str(BASE_DIR.joinpath('media')) # the absolute file system path to the directory for user-uploaded files
+• create media/covers folder 
+• update config/urls.py
++ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+• update books/models.py
+cover = models.ImageField(upload_to='covers/')
 
 ---Django notes---
 • admin.py is a configuration file for the built-in Django Admin app

@@ -10,8 +10,8 @@ Django for proffesionals\ch1-docker\
 
 $ docker run hello-world - download an official Docker image and then run it within a container
 $ docker info - info
-• configure Dockerfile in \ProjectFolder
-• create and configure docker-compose.yml \rojectFolder
+• create and configure a Dockerfile in \ProjectFolder
+• create and configure a docker-compose.yml \rojectFolder
 $ docker build . - indicates the current directory is where to execute the command
 $ docker-compose up - run Docker container (to confirm it worked go to => http://127.0.0.1:8000/)
 
@@ -21,7 +21,12 @@ $ docker-compose logs # to see logs
  
 $ docker-compose down # stop running Docker container
 
+<whenever adding a new package first install it within Docker, stop the containers,
+force an image rebuild, and then start the containers up again.
+$ docker-compose down
+$ docker-compose up -d --build
+/>
 
 • after using $ docker-compose up # we will enter commands in this format $ docker-compose exec web EnterCommand 
 for instance:
-$ docker-compose exec web python manage.py createsuperuser
+$ docker-compose exec web python manage.py runserver
