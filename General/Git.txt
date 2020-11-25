@@ -1,0 +1,22 @@
+-----Git
+"Configuration"
+
+--Set up--
+$ git config --global user.name "Your Name" # Enter github user name
+$ git config --global user.email "yourname@email.com" # Enter your email
+$ git init
+$ git status # display changes since last git commit
+$ git remote add origin https://github.com/wsvincent/hello-world.git $ linking to repository with link (every repo have a different link)
+or 
+$ git remote rm origin # to clear current path
+$ git clone https://github.com/wsvincent/hello-world.git # Clone remote repo to your local pc 
+
+--Commit to git--
+$ git add -A # add all the files to git (A = all)
+$ git commit -m "initial commit" # save files with a comment (m = massage)
+$ git remote rm origin # CLEAR ORIGIN
+$ git push -u origin master # push changes to git
+
+
+$ git ch
+$ git reset --hard EnterCommitVesion # return to previous repo vesion (delete any local uncommited changes )

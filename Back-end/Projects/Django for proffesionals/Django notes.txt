@@ -1,0 +1,135 @@
+NOTES
+--
+
+<Normally don’t run migrate on new projects until after you finish creating a custom user model./>
+
+
+<Django’s auth app looks for templates within a templates/registration directory, but allauth prefers they be located within a templates/account directory
+allauth uses 'account_logout','account_login','account_signup' for its URL names
+/>
+
+
+
+<whenever adding a new package first install it within Docker, stop the containers,
+force an image rebuild, and then start the containers up again.
+$ docker-compose down
+$ docker-compose up -d --build
+/>
+
+only after we have built our initial image that we start installing future software packages within Docker itself
+$ docker-compose up -d --build
+
+setUpTestData() have faster tests than using setUp(), however, care must be taken not to modify any objects created
+in setUpTestData() in your test methods. ( the book uses setUp() )
+
+
+URL -> View -> Model (typically) -> Template
+
+# in order to change built in django features, search few words from the feature on django source code on github
+
+# enter time zone in config/settings.py
+TIME_ZONE = 'America/New_York'
+
+-------------[Django CheckList] 
+when object is created Django automatically adds an auto-incrementing primary key (pk/id) to his database model
+
+<in order to edit/learn about built in features search them on django's source code on github
+/>
+
+<when Creating new app in a project make sure to update INSTALLED_APPS in config/settings
+/>
+
+<when Creating new template-folder in a project make sure to update TEMPLATES in config/settings
+Note that updating the DIRS setting means that Django will also look in this new folder; it will
+still look for any templates folders within an app.
+/>
+
+<when Creating login/logout page make sure to add a success login redirect in config/settings.py
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+/>
+
+<when creating an app that define a new custom User Model conigure Django config/settings.py to use our new custom user model
+AUTH_USER_MODEL = 'appName.CustomUser' # 
+then use:
+$ python manage.py makemigrations appName
+$ python manage.py migrate
+/>
+
+<when installing django-crispy-forms make sure to update config/settings.py
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+/>
+
+<enabling Email services
+1. signup to an email service for instance - SendGrid
+2. Change config/settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'your_custom_email_account'
+EMAIL_HOST = 'smtp.sendgrid.net' # enter your email
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = 'sendgrid_password' # enter your email
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+OR - if you want to display email on the terminal
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+/>
+
+Static Files
+Previously, we configured our static files by creating a dedicated static folder, pointing
+STATICFILES_DIRS to it in our config/settings.py file, and adding {% load static %} to our
+base.html template. But since Django won’t serve static files in production, we need a few extra
+steps now.
+The first change is to use Django’s collectstatic command which compiles all static files
+throughout the project into a singe directory suitable for deployment
+. Second, we must set the
+STATIC_ROOT configuration, which is  And third, we need to set STATICFILES_STORAGE, 
+Here is what the updated config/settings.py file should look like:
+
+
+
+
+<!-- .html
+{% extends 'base.html' %} - extends the content from 'base.html' file to the file this is written on
+<link href="{% static 'css/base.css' %}" rel="stylesheet"> # tell django to look for css/base.css inside static
+
+method=post # send information
+method=get # get information 
+{% csrf_token %} # provide security
+{{ form.as_p }} # display/render form/view attributes/fields as paragraph  (for instance ArticleUpdateView attributes are: 'title', 'body')
+OR
+{% load crispy_forms_tags %} # import crispy forms to the template
+{{ form|crispy }} # display/render the form/view attributes/fields well designed
+
+
+{% if user.is_authenticated %} # render what's inside the block only if the user is active
+{% else %} # render what's inside the block only if the user isn't active 
+{% endif %} # end if statemant 
+
+
+{% for post in object_list %} # for loop using ListView
+{% endfor %} # end of for loop
+
+<a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> # link a button to a view, and add an object id (pk=id)
+
+{% block content %} # on all the files that extends 'base.html' - information passes inside this block is displayed on the location of the 'base.html' block
+{% endblock content %} # end of block
+
+{% for comment in article.comments.all %} 
+# we’re calling article.comments.all which means first look at the article model, then comments which is
+# the related name of the entire Comment model, and select all included.
+
+{% autoescape on %}
+# protects against security issues like cross site scripting.
+
+--- posts/views.py ---
+class HomePageView(ListView):
+  model = Post
+  template_name = 'home.html'
+  context_object_name = 'all_posts_list' ------- (change object_name to all_posts_list)
+
+--- templates/home.html ---
+{% for post in all_posts_list %}
+{% endfor %}
+
+-->
+
