@@ -1,0 +1,226 @@
+-----Django-------
+http://127.0.0.1:8000/ # website local location
+
+[pipenv]
+<$ pip3 install pipenv # install pipenv
+/>
+
+[django installation]
+<$ pipenv install django~=3.1.0 # Install django
+/>
+
+[start project/app]
+<$ django-admin startproject config . # start project (Inside virtual enviorment folder)
+$ python manage.py startapp appName #  create app 
+$ python manage.py migrate
+/>
+
+[virtual enviorment]
+<$ pipenv shell # enter virtual enviroment
+$ exit # deactivate virtual enviorment
+/>
+
+[run server] - enter virtual enviroment before running server.
+<$ python manage.py runserver # Run server
+control + c ---- Quitting server
+/>
+
+[create superuser] # Create admin user, make sure to migrate changes before doing so
+<$ python manage.py createsuperuser
+/>
+
+
+[tests]
+<$ python manage.py test # run tests
+HTTP 200 - working
+HTTP 404 - error
+/>
+
+[Django CheckList] 
+<whenever we create or modify existing model we will need to update django:
+$ python manage.py makemigrations appName # (including appName will makemigrations of this specific app)
+$ python manage.py migrate
+/>
+
+
+[Django allauth]
+<$ pipenv install django-allauth==0.42.0
+• update config/settings.py
+INSTALLED_APPS = [
+	'django.contrib.sites',
+	'allauth',
+	'allauth.account',
+]
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+	'django.contrib.auth.backends.ModelBackend',
+	'allauth.account.auth_backends.AuthenticationBackend',
+)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' (switch conosle with: smtp, if you have SMTP server configured) And then to configure EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT, and EMAIL_USE_TLS based on the instructions from your email provider as environment variables.
+change LOGOUT_REDIRECT_URL = 'home' to: ACCOUNT_LOGOUT_REDIRECT = 'home'
+/>
+
+[Pillow - enable image uploads]
+$ pipenv install pillow==7.2.0
+• update config/settings.py
+MEDIA_URL = '/media/' # the URL we can use in our templates for the files
+MEDIA_ROOT = str(BASE_DIR.joinpath('media')) # the absolute file system path to the directory for user-uploaded files
+• create media/covers folder 
+• update config/urls.py
++ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+• update books/models.py
+cover = models.ImageField(upload_to='covers/')
+
+---Django notes---
+• admin.py is a configuration file for the built-in Django Admin app
+• apps.py is a configuration file for the app itself
+• migrations/ keeps track of any changes to our models.py file so our database and models.py stay in sync
+• models.py is where we define our database models which Django automatically translates into database tables
+• tests.py is for our app-specific tests
+• views.py is where we handle the request/response logic for our web app
+• takes user input and sends it to a URL via either a GET or POST method.
+
+Django request/response cycle:
+URL -> View -> Model (typically) -> Template
+
+
+• 3rd party softwares
+[Whitenoise & staticfiles] - to include css in production use:
+<
+• create a new static folder in the same directory as manage.py Then add folders for css, javascript, and images.
+for instance:
+$ mkdir static
+$ mkdir static/css
+$ mkdir static/js
+$ mkdir static/images
+
+• install whitenoise
+$ pipenv install whitenoise==5.1.0 # serve these compiled static files in production,
+
+• add whitenoise to the INSTALLED_APPS *above* the built-in 'django.contrib.staticfiles'
+INSTALLED_APPS = [ 'whitenoise.runserver_nostatic', ]
+
+• in MIDDLEWARE add a new line for WhiteNoiseMiddleware below SecurityMiddleware
+MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
+
+• change this static settings to use WhiteNoise and add the folowing lines
+STATIC_URL = '/static/' # # STATIC_URL is the URL location of static files in our project, aka at /static/.
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # configure where to look for static files beyond just app/static folder
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # the absolute location of these collected files, to a folder called staticfiles.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # # which is the file storage engine used by collectstatic.
+
+• run collectstatic cmd command to use whitenoise Since our STATICFILES_STORAGE method has changed
+$ python manage.py collectstatic # collectstatic command must be run to compile the css into this staticfiles folder used in production
+/>
+
+
+[Bootstraps]
+$ pipenv install django-crispy-forms==1.9.2 # django-crispy-forms.
+
+[Environment Variables] - .env file
+$ pipenv install 'environs[django]==8.0.0'
+and create .env file
+
+[Psycopg & install PostgreSql] - a database adapter that lets Python apps talk to PostgreSQL databases
+$ pipenv install psycopg2-binary==2.8.5
+• if docker is used update docker-compose.yml
+services:
+	depends_on:
+	- db
+db:
+	image: postgres:11
+	environment:
+	- "POSTGRES_HOST_AUTH_METHOD=trust"
+
+• update config/settings.py after installing environs[django]
+DATABASES = {
+	"default": env.dj_db_url("DATABASE_URL",
+	default="postgres://postgres@db/postgres")
+}
+
+
+[Gunicorn] - Gunicorn is the production web server
+$ pipenv install gunicorn==19.9.0
+and create a file named 'Procfile' and add text to file:     web: gunicorn config.wsgi --log-file -
+
+
+
+
+-------professional website deployment checklist------
+[Setting up for deployment]
+• finish Environment Variables steps
+
+• set DEBUG set to False
+# config/settings.py
+DEBUG = env.bool("DEBUG", default=False)
+# .env
+export DEBUG = True
+
+• update ALLOWED_HOSTS 
+# config/settings.py
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+
+• use environment variable for SECRET_KEY ( to keep it a secret)
+# config/settings.py
+SECRET_KEY = env.str("SECRET_KEY")
+# .env
+export SECRET_KEY=TypeHereSecretKey
+
+• install Psycopg & update DATABASES to use SQLite locally and PostgreSQL in production ( SQLite doesnt support production)
+# config/settings.py
+DATABASES = {
+"default": env.dj_db_url("DATABASE_URL")
+}
+# .env
+export DATABASE_URL=sqlite:///db.sqlite3
+
+• finish Whitenoise & staticfiles Steps
+
+• finish Gunicorn Steps
+
+[Deploying using Heroku]
+• donwload and install heroku from their website
+• login to your Heroku account (id you dont have an account sign up on their website)
+$ heroku login - enter your email and password
+
+• create a container for your app to live in
+$ heroku create
+or 
+$ heroku create AppName # to determine the app name NOTE: it must be a unique name on Heroku
+
+• configure git to push to your app repo
+$ heroku git:remote -a appName
+
+• Run the following command to create this new database: (  For a learning project like this, the free hobby-dev tier is more than enough )
+$ heroku addons:create heroku-postgresql:hobby-dev
+
+• check config/setting.py or in .env for SECRET_KEY and enter it:
+$ heroku config:set SECRET_KEY='EnterSecretKey'
+
+• push our code to Heroku
+$ git push heroku master
+
+• choose your website scale
+$ heroku ps:scale web=1
+
+• The same process used locally of running migrate, creating a superuser account need to be followed again
+$ heroku run python manage.py migrate
+$ heroku run python manage.py createsuperuser
+
+• open the website url
+$ heroku open
+
+
+[Problem Checker]
+$ python manage.py check --deploy
+
+-----CMD-----
+
+• cd (change down a directory)
+• cd .. (change up a directory)
+• dir (list files in your current directory on Windows)
+• pwd (print working directory)
+• mkdir (make directory)
+
+
+

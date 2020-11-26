@@ -1,0 +1,15 @@
+$ docker-compose exec web python manage.py check --deploy # check if project is deployment ready
+create & configure docker-compose-prod.yml
+create & configure .gitignore
+
+
+
+# docker-compose-prod.yml
+services:
+  web:
+    environment:
+      - "DJANGO_SECRET_KEY=)*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n"
+      - "DJANGO_DEBUG=False"se"
+
+# generate secret key
+docker-compose exec web python -c 'import secrets; print(secrets.token_urlsafe(38))'
