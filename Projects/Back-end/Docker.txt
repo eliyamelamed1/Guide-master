@@ -1,32 +1,30 @@
-## for somereason for docker to work it the project app should be hosted in another directory, for instance:
----for instance the project folder will be called 'ch1-docker'
-Django for proffesionals\ch1-docker\
+## for somereason for docker to work it the project app should be hosted in another directory, for instance: ##
+## for instance the project folder will be called 'ch1-docker' Django for proffesionals\ch1-docker\ ## 
 
-[SET UP Docker]
+$ docker-compose exec web EnterCommand
+---------------------------[Docker-Set-Up]------------
 • install pipenv & Django
-•
-• create a folder and then create your project/app in it
----for instance the project will be called 'ch1-docker'
-
+• your project/app
 $ docker run hello-world - download an official Docker image and then run it within a container
 $ docker info - info
-• create and configure a Dockerfile in \ProjectFolder
-• create and configure a docker-compose.yml \rojectFolder
-$ docker build . - indicates the current directory is where to execute the command
+• create and configure a Dockerfile
+• create and configure a docker-compose.yml
+$ docker build . - 
 $ docker-compose up - run Docker container (to confirm it worked go to => http://127.0.0.1:8000/)
-
 or
 $ docker-compose up -d # Detached mode doesnt show us the server docker log
 $ docker-compose logs # to see logs
  
 $ docker-compose down # stop running Docker container
 
-<whenever adding a new package first install it within Docker, stop the containers,
-force an image rebuild, and then start the containers up again.
-$ docker-compose down
-$ docker-compose up -d --build
+[Docker Notes]
+<• whenever adding a new package - install it within Docker, stop the containers, and force an image rebuild.
+1. $ docker-compose down
+2. $ docker-compose up -d --build
 />
 
-• after using $ docker-compose up # we will enter commands in this format $ docker-compose exec web EnterCommand 
-for instance:
-$ docker-compose exec web python manage.py runserver
+
+[alterantives Run docker container]
+$ docker-compose up -d # detached mode
+$ docker-compose up --build # run server and build image
+

@@ -1,50 +1,16 @@
------Django-------
-http://127.0.0.1:8000/ # website local location
+• Django allauth - user managemant
+• Pillow - enable image uploads
+• Bootstraps 
+• Psycopg - database adapter
+• Environment Variables
+• Gunicorn - production web server
+• Whitenoise - include staticfiles in production
+• Deployment
 
-[pipenv]
-<$ pip3 install pipenv # install pipenv
-/>
-
-[django installation]
-<$ pipenv install django~=3.1.0 # Install django
-/>
-
-[start project/app]
-<$ django-admin startproject config . # start project (Inside virtual enviorment folder)
-$ python manage.py startapp appName #  create app 
-$ python manage.py migrate
-/>
-
-[virtual enviorment]
-<$ pipenv shell # enter virtual enviroment
-$ exit # deactivate virtual enviorment
-/>
-
-[run server] - enter virtual enviroment before running server.
-<$ python manage.py runserver # Run server
-control + c ---- Quitting server
-/>
-
-[create superuser] # Create admin user, make sure to migrate changes before doing so
-<$ python manage.py createsuperuser
-/>
-
-
-[tests]
-<$ python manage.py test # run tests
-HTTP 200 - working
-HTTP 404 - error
-/>
-
-[Django CheckList] 
-<whenever we create or modify existing model we will need to update django:
-$ python manage.py makemigrations appName # (including appName will makemigrations of this specific app)
-$ python manage.py migrate
-/>
-
-
+-----Installations-----
 [Django allauth]
 <$ pipenv install django-allauth==0.42.0
+• Note - Django’s auth app looks for templates within a templates/registration directory, but allauth prefers they be located within a templates/account directory, allauth uses 'account_logout','account_login','account_signup' for its URL names
 • update config/settings.py
 INSTALLED_APPS = [
 	'django.contrib.sites',
@@ -71,20 +37,7 @@ MEDIA_ROOT = str(BASE_DIR.joinpath('media')) # the absolute file system path to 
 • update books/models.py
 cover = models.ImageField(upload_to='covers/')
 
----Django notes---
-• admin.py is a configuration file for the built-in Django Admin app
-• apps.py is a configuration file for the app itself
-• migrations/ keeps track of any changes to our models.py file so our database and models.py stay in sync
-• models.py is where we define our database models which Django automatically translates into database tables
-• tests.py is for our app-specific tests
-• views.py is where we handle the request/response logic for our web app
-• takes user input and sends it to a URL via either a GET or POST method.
 
-Django request/response cycle:
-URL -> View -> Model (typically) -> Template
-
-
-• 3rd party softwares
 [Whitenoise & staticfiles] - to include css in production use:
 <
 • create a new static folder in the same directory as manage.py Then add folders for css, javascript, and images.
@@ -146,7 +99,8 @@ and create a file named 'Procfile' and add text to file:     web: gunicorn confi
 
 
 
--------professional website deployment checklist------
+[Deployment]
+-------professional website deployment checklist------ ## Without Docker ##
 [Setting up for deployment]
 • finish Environment Variables steps
 
@@ -213,14 +167,6 @@ $ heroku open
 
 [Problem Checker]
 $ python manage.py check --deploy
-
------CMD-----
-
-• cd (change down a directory)
-• cd .. (change up a directory)
-• dir (list files in your current directory on Windows)
-• pwd (print working directory)
-• mkdir (make directory)
 
 
 

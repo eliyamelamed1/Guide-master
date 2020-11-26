@@ -1,0 +1,61 @@
+• in order to edit/learn about built in features search a few words from the feature  on django's source code on github
+------------------[Basic-Set-Up]-----------------------
+[pipenv]
+<$ pip3 install pipenv # install pipenv
+/>
+
+[django installation]
+<$ pipenv install django~=3.1.0 # Install django
+/>
+
+[start project/app]
+<$ django-admin startproject config . # start project (Inside virtual enviorment folder)
+$ python manage.py startapp appName #  create app 
+$ python manage.py migrate
+update INSTALLED_APPS in config/settings
+/>
+
+[virtual enviorment]
+<$ pipenv shell # enter virtual enviroment
+$ exit # deactivate virtual enviorment
+/>
+
+[run server] - enter virtual enviroment before running server.
+<$ python manage.py runserver # Run server
+control + c ---- Quitting server
+/>
+
+[create superuser] # Create admin user, make sure to migrate changes before doing so
+<$ python manage.py createsuperuser
+/>
+
+[tests]
+<$ python manage.py test # run tests
+HTTP 200 - working
+HTTP 404 - error
+• setUpTestData() have faster tests than using setUp(), however, care must be taken not to modify any objects created in setUpTestData() in your test methods.
+
+/>
+
+[Django CheckList] 
+<whenever we create or modify existing model we will need to update django:
+$ python manage.py makemigrations appName # (including appName will makemigrations of this specific app)
+$ python manage.py migrate
+• Normally don’t run migrate on new projects until after you finish creating a custom user model
+/>
+
+[Deploy Problem Checker]
+$ python manage.py check --deploy
+
+[Generate Secret Key]
+$ python -c 'import secrets; print(secrets.token_urlsafe(38))'
+-----CMD-----
+
+• cd (change down a directory)
+• cd .. (change up a directory)
+• dir (list files in your current directory on Windows)
+• pwd (print working directory)
+• mkdir (make directory)
+
+
+

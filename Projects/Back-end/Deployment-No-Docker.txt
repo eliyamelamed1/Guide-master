@@ -1,0 +1,65 @@
+-------Deploy without docker------
+[setting configuration]
+• update ALLOWED_HOSTS 
+# config/settings.py
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+
+• install and configure environment variableS for SECRET_KEY ( to keep it a secret)
+# config/settings.py
+SECRET_KEY = env.str("SECRET_KEY")
+# .env
+export SECRET_KEY=TypeHereSecretKey
+• install Psycopg & update DATABASES to use SQLite locally and PostgreSQL in production ( SQLite doesnt support production)
+# config/settings.py
+DATABASES = {
+"default": env.dj_db_url("DATABASE_URL")
+}
+# .env
+export DATABASE_URL=sqlite:///db.sqlite3
+• set DEBUG set to False
+# config/settings.py
+DEBUG = env.bool("DEBUG", default=False)
+# .env
+export DEBUG = True
+
+
+• finish Whitenoise & staticfiles Steps
+
+• finish Gunicorn Steps
+
+
+
+
+[Heroku configuration]
+• donwload and install heroku from their website
+• login to your Heroku account (id you dont have an account sign up on their website)
+$ heroku login - enter your email and password
+
+• create a container for your app to live in
+$ heroku create
+or 
+$ heroku create AppName # to determine the app name NOTE: it must be a unique name on Heroku
+
+• configure git to push to your app repo
+$ heroku git:remote -a appName
+
+• Run the following command to create this new database: (  For a learning project like this, the free hobby-dev tier is more than enough )
+$ heroku addons:create heroku-postgresql:hobby-dev
+
+• check config/setting.py or in .env for SECRET_KEY and enter it:
+$ heroku config:set SECRET_KEY='EnterSecretKey'
+
+• push our code to Heroku
+$ git push heroku master
+
+• choose your website scale
+$ heroku ps:scale web=1
+
+• The same process used locally of running migrate, creating a superuser account need to be followed again
+$ heroku run python manage.py migrate
+$ heroku run python manage.py createsuperuser
+
+• open the website url
+$ heroku open
+
+
