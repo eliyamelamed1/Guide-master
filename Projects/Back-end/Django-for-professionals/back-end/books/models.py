@@ -16,7 +16,7 @@ class Book(models.Model):
     # If we wanted to allow uploads of a regular file rather than an image file the only difference could be to change ImageField to FileField.   
 
     # Indexing is a common technique for speeding up database performance, usually only applied to the primary key in a model.
-    #class Meta:
+    class Meta:
     #    indexes = [ # new
     #        models.Index(fields=['id'], name='id_index'),
     #    ]
