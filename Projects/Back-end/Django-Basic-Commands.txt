@@ -1,4 +1,5 @@
 • in order to edit/learn about built in features search a few words from the feature  on django's source code on github
+• for deployment check Django for proffesionals chapters 16-17
 ------------------[Basic-Set-Up]-----------------------
 [pipenv]
 <$ pip3 install pipenv # install pipenv
