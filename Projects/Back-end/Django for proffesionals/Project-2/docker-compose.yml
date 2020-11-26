@@ -1,0 +1,56 @@
+version: '3.8' # specify the most recent version of Docker Compose
+
+# specify which services (or containers) we want to have running within our Docker host.
+# It’s possible to have multiple services running, but for now we just have one for web.
+services:
+  web:
+
+    # We specify how to build the container by saying, Look in the current directory for the Dockerfile.
+    build: .
+
+    # Then within the container run the command to start up the local server.
+    command: python /code/manage.py runserver 0.0.0.0:8000
+
+    # mount automatically syncs the Docker filesystem with our local computer’s
+    # filesystem. This means that we don’t have to rebuild the image each time we change a single file!
+    volumes:
+      - .:/code
+
+    # specify the ports to expose within Docker which will be 8000, which is the Django's default.
+    ports:
+      - 8000:8000
+    
+    # This means that db service will be started up before web.
+    depends_on:
+      - db
+    environment: # enviorment variables
+      - "DJANGO_SECRET_KEY=)*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n" # note that if your secret key includes a dollar sign ($), you need to add additional dollar sign ($$), This is due to how docker-compose handles variable substitution
+      - "DJANGO_DEBUG=True"
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
+      - "DJANGO_SESSION_COOKIE_SECURE=False"
+      - "DJANGO_CSRF_COOKIE_SECURE=False"
+
+  # database sevice - PostgreSQL
+  db:
+    image: postgres:11 # PostgreSQL version 11. if number isnt included latest version will be use
+    volumes: # specify volume database path
+      - postgres_data:/var/lib/postgresql/data/
+    environment: # allows us to connect without a password. This is a convenience for local development.
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+# in order to save database information it must have a dedicated volume or it will be lost each time a container is stopped.
+volumes: # specify volume database type
+  postgres_data:
+
+
+
+
+# docker-compose.yml file control how to run the container that will be built based upon our Dockerfile image.
+
+# Docker container is a running instance
+# of an image - the container is the actual, fully-built building
+
+

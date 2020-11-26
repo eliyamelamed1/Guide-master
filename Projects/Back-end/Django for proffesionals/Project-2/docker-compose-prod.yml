@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - "DJANGO_SECRET_KEY=)*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n"
+      - "DJANGO_DEBUG=False"
+  db:
+    image: postgres:11
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+volumes:
+  postgres_data:
+
+# deployment file
+
+# each time you make changes
+# $ docker-compose down
+# $ docker-compose -f docker-compose-prod.yml up -d --build
+# $ docker-compose exec web python manage.py migrate
