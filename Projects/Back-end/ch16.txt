@@ -1,7 +1,7 @@
 $ docker-compose exec web python manage.py check --deploy # check if project is deployment ready
 create & configure docker-compose-prod.yml
 create & configure .gitignore
-
+$ docker-compose -f docker-compose-prod.yml up -d --build
 
 
 # docker-compose-prod.yml
