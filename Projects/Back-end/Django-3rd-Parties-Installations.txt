@@ -1,13 +1,14 @@
-• Django allauth - user managemant
+• Django-allauth - user managemant
 • Pillow - enable image uploads
 • Bootstraps 
 • Psycopg - database adapter
 • Environment Variables
 • Gunicorn - production web server
 • Whitenoise - include staticfiles in production
+• django-debug-toolbar
 
 -----Installations-----
-[Django allauth]
+[Django-allauth]
 <$ pipenv install django-allauth==0.42.0
 • Note - Django’s auth app looks for templates within a templates/registration directory, but allauth prefers they be located within a templates/account directory, allauth uses 'account_logout','account_login','account_signup' for its URL names
 • update config/settings.py
@@ -95,5 +96,19 @@ DATABASES = {
 $ pipenv install gunicorn==19.9.0
 and create a file named 'Procfile' and add text to file:     web: gunicorn config.wsgi --log-file -
 
-
-
+[django-debug-toolbar]
+% pipenv install django-debug-toolbar==2.2
+• update: # config/settings.py
+INSTALLED_APPS = [
+	'debug_toolbar'
+]
+MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware',]
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]  ## if your are not using docker use INTERNAL_IPS = ('127.0.0.1', )
+• update: # config/urls.py
+if settings.DEBUG: # debug tool bar will appear when DEBUG = True 
+	import debug_toolbar
+	urlpatterns = [
+		path('__debug__/', include(debug_toolbar.urls)),
+	] + urlpatterns

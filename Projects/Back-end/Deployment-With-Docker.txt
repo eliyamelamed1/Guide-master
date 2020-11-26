@@ -1,15 +1,42 @@
-$ docker-compose exec web python manage.py check --deploy # check if project is deployment ready
-create & configure docker-compose-prod.yml
-create & configure .gitignore
-$ docker-compose -f docker-compose-prod.yml up -d --build
+-----------------[Security]-----------
+• 1. configure docker-compose-prod.yml # production setting file 
+• 2. configure .gitignore # file that specify which files git should not track
+• 3. load the new file 
+• 4. docker-compose exec web python manage.py check --deploy # check the deploy checklist
 
-
-# docker-compose-prod.yml
+1. [# docker-compose-prod.yml]
+version: '3.8'
 services:
-  web:
-    environment:
-      - "DJANGO_SECRET_KEY=)*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n"
-      - "DJANGO_DEBUG=False"se"
+    web:
+        build: .
+        command: python /code/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+        ports:
+            - 8000:8000
+        depends_on:
+	    - db
+        environment:
+	    - "DJANGO_SECRET_KEY=)*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n"
+    db:
+        image: postgres:11
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        environment:
+            - "POSTGRES_HOST_AUTH_METHOD=trust"
+volumes:
+    postgres_data:
 
-# generate secret key
-docker-compose exec web python -c 'import secrets; print(secrets.token_urlsafe(38))'
+2. [# .gitignore]
+docker-compose-prod.yml
+__pycache__/
+db.sqlite3
+.DS_Store # Mac only
+
+3. -------------------[activate the file]
+$ docker-compose down
+$ docker-compose -f docker-compose-prod.yml up -d --build
+$ docker-compose exec web python manage.py migrate
+
+4. [deploy checklist]
+$ docker-compose exec web python manage.py check --deploy

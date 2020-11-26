@@ -15,10 +15,11 @@ class Book(models.Model):
     cover = models.ImageField(upload_to='covers/', blank=True) # blank = true meaning cover is optional, cover is used in templates/books/book_detail.html as book.cover.url 
     # If we wanted to allow uploads of a regular file rather than an image file the only difference could be to change ImageField to FileField.   
 
-    class Meta:
-        indexes = [ # new
-            models.Index(fields=['id'], name='id_index'),
-        ]
+    # Indexing is a common technique for speeding up database performance, usually only applied to the primary key in a model.
+    #class Meta:
+    #    indexes = [ # new
+    #        models.Index(fields=['id'], name='id_index'),
+    #    ]
 
         # create custom permission: to read all books. In other words access to the DetailView. 
         permissions = [
