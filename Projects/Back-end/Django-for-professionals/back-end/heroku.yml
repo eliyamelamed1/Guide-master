@@ -1,4 +1,4 @@
-# when using docker instead of a procfile we use heroku.yml
+# when using docker instead of a procfile we use heroku.yml for deployment
 
 setup:
   addons:
