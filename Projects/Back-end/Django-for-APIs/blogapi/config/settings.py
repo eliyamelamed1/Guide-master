@@ -37,20 +37,34 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # 
 
     # 3rd Party
     'rest_framework',
+    'rest_framework.authtoken', # built in django rest - Token Authentication
+    'dj_rest_auth', 
+    'dj_rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
 
     # local
     'posts.apps.PostsConfig',
 ]
 
 
-# Permissions
+# Django Rest settings
 REST_FRAMEWORK = {
+    # Permission settings
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated', # only authenticated, registered users have access
-        ]
+        ],
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [ 
+        'rest_framework.authentication.SessionAuthentication', # Defualt settings- add the ability to log in and log out
+        'rest_framework.authentication.TokenAuthentication' # Token Authentication
+        ],
 }
 
 # • AllowAny - any user, authenticated or not, has full access
@@ -138,3 +152,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1

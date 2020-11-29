@@ -20,4 +20,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('posts.urls')),
     path('api-auth/', include('rest_framework.urls')), # this single line add login + logout to 'api/v1/'
+    path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('api/v1/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
 ]
+
+
+# dj_rest_auth includes:
+    # login /api/v1/dj-rest-auth/login
+    # logout /api/v1/dj-rest-auth/logout
+    # password reset - /api/v1/dj-rest-auth/password/reset
+    # password confirm - /api/v1/dj-rest-auth/password/reset/confirm
+
+
