@@ -45,11 +45,19 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
 ]
 
+
+# Permissions
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated', # only authenticated, registered users have access
         ]
 }
+
+# • AllowAny - any user, authenticated or not, has full access
+# • IsAuthenticated - only authenticated, registered users have access
+# • IsAdminUser - only admins/superusers have access
+# • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
