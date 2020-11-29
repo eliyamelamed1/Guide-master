@@ -10,7 +10,7 @@ class Article(models.Model):
     body = models.TextField() #  TextField - text box that streches based on the user’s text
     date = models.DateTimeField(auto_now_add=True) # saves the current date & time
     author = models.ForeignKey( # ForeignKey- "allows for a many-to-one relationship." - a given user can be the author of many different blog posts but not the other way around.
-        get_user_model(), # This method will return the the website users 
+        get_user_model(), # This method will set the current user as the author 
         on_delete=models.CASCADE,
     )
 

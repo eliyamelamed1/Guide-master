@@ -53,26 +53,6 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
 ]
 
-
-# Django Rest settings
-REST_FRAMEWORK = {
-    # Permission settings
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', # only authenticated, registered users have access
-        ],
-    
-    'DEFAULT_AUTHENTICATION_CLASSES': [ 
-        'rest_framework.authentication.SessionAuthentication', # Defualt settings- add the ability to log in and log out
-        'rest_framework.authentication.TokenAuthentication' # Token Authentication
-        ],
-}
-
-# • AllowAny - any user, authenticated or not, has full access
-# • IsAuthenticated - only authenticated, registered users have access
-# • IsAdminUser - only admins/superusers have access
-# • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -152,6 +132,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+
+
+# Django Rest settings
+REST_FRAMEWORK = {
+    # Permission settings
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', # only authenticated, registered users have access
+    ],
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [ 
+        'rest_framework.authentication.SessionAuthentication', # Defualt settings- add the ability to log in and log out
+        'rest_framework.authentication.TokenAuthentication' # Token Authentication
+    ],
+}
+
+# • AllowAny - any user, authenticated or not, has full access
+# • IsAuthenticated - only authenticated, registered users have access
+# • IsAdminUser - only admins/superusers have access
+# • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
