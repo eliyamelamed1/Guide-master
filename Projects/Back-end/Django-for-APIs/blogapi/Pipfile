@@ -6,8 +6,15 @@ name = "pypi"
 [packages]
 django = "~=3.1.0"
 djangorestframework = "~=3.11.0"
+
+# user management
 dj-rest-auth = "==1.1.0"
 django-allauth = "~=0.42.0"
+
+# api documentation
+pyyaml = "==5.3.1"
+uritemplate = "==3.0.1"
+drf-yasg = "==1.17.1"
 
 [dev-packages]
 

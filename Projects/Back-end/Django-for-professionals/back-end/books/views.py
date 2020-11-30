@@ -9,7 +9,7 @@ from .models import Book
 
 class BookListView(LoginRequiredMixin, ListView):
     model = Book
-    context_object_name = 'book_list' # default value = object_list
+    context_object_name = 'book_list' # change object_list to: book_list in books/book_list.html
     template_name = 'books/book_list.html'
     login_url = 'account_login'
 
