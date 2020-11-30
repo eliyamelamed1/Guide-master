@@ -11,6 +11,8 @@ from .views import UserViewSet, PostViewSet
 #     path('users/', UserList.as_view()),
 # ]
 
+
+# Routers work directly with viewsets to automatically generate URL patterns for us.
 router = SimpleRouter()
 router.register('users', UserViewSet, basename='users')
 router.register('', PostViewSet, basename='posts')

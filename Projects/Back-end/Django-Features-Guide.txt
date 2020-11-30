@@ -16,11 +16,11 @@ URL -> View -> Model (typically) -> Template
 -------------[Guide] 
 • enable Email services
 • change time zone
-• login/logout configuration
+• login/logout redirect
 • custom user Model configuration
 • Html 
 
-[login/logout configuration]
+[login/logout redirect]
 <1.login/logout created
 2.add a success login redirect in config/settings.py
 LOGIN_REDIRECT_URL = 'home'
@@ -28,7 +28,7 @@ LOGOUT_REDIRECT_URL = 'home'
 />
 
 [Custom user model]
-<1.create user create & change forms
+<1.add user- create form & change form.
 2.update config/settings.py 
 AUTH_USER_MODEL = 'appName.CustomUser' # 
 3.then use:

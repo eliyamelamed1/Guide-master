@@ -37,7 +37,7 @@ schema_view = get_schema_view (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('posts.urls')),
+    path('posts/', include('posts.urls')),
 
     # User managment
     path('api-auth/', include('rest_framework.urls')), # this single line add login + logout to 'api/v1/'
