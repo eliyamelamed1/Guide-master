@@ -1,13 +1,55 @@
-• Django-allauth - user managemant
-• Pillow - enable image uploads
+• Django-allauth # user managemant
+• Pillow # enable image uploads
 • Bootstraps 
 • Psycopg - database adapter
 • Environment Variables
 • Gunicorn - production web server
 • Whitenoise - include staticfiles in production
 • django-debug-toolbar
-
+• djangorestframework
+• djangorestframework-simplejwt # Webtokens
+• django-cors-headers # enable backend & frontend connection
+• dj-rest-auth
 -----Installations-----
+[djangorestframework]
+$ pipenv install djangorestframework
+• update config/settings.py
+INSTALLED_APPS = [
+     'rest_framework'
+]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+# • AllowAny - any user, authenticated or not, has full access
+# • IsAuthenticated - only authenticated, registered users have access
+# • IsAdminUser - only admins/superusers have access
+# • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
+
+
+[djangorestframework-simplejwt]
+$ pipenv install djangorestframework-simplejwt
+• update config/settings.py
+REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ]
+}
+
+[django-cors-headers]
+$ pipenv install django-cors-headers
+• update config/settings.py
+INSTALLED_APPS = [
+    'corsheaders',
+]
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+]
+CORS_ORIGIN_ALLOW_ALL = True
+
+
 [Django-allauth]
 <$ pipenv install django-allauth==0.42.0
 • Note - Django’s auth app looks for templates within a templates/registration directory, but allauth prefers they be located within a templates/account directory, allauth uses 'account_logout','account_login','account_signup' for its URL names
@@ -26,11 +68,20 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' (switch conosle
 change LOGOUT_REDIRECT_URL = 'home' to: ACCOUNT_LOGOUT_REDIRECT = 'home'
 />
 
+[dj-rest-auth]
+$ pipenv install dj-rest-auth==1.1.0
+• update config/settings.py
+INSTALLED_APPS = [
+    'dj_rest_auth',
+]
+
+
 [Pillow - enable image uploads]
 $ pipenv install pillow==7.2.0
 • update config/settings.py
 MEDIA_URL = '/media/' # the URL we can use in our templates for the files
 MEDIA_ROOT = str(BASE_DIR.joinpath('media')) # the absolute file system path to the directory for user-uploaded files
+FILE_UPLOAD_PERMISSIONS=0o640
 • create media/covers folder 
 • update config/urls.py
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -76,6 +127,7 @@ and create .env file
 
 [Psycopg & install PostgreSql] - a database adapter that lets Python apps talk to PostgreSQL databases
 $ pipenv install psycopg2-binary==2.8.5
+$ pipenv install psycopg2
 • if docker is used update docker-compose.yml
 services:
 	depends_on:

@@ -11,6 +11,8 @@ or
 $ git remote rm origin # to clear current path
 $ git clone https://github.com/wsvincent/hello-world.git # Clone remote repo to your local pc 
 
+$ pip install -r requirements.txt 
+
 --Commit to git--
 $ git add -A # add all the files to git (A = all)
 $ git commit -m "initial commit" # save files with a comment (m = massage)
