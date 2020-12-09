@@ -10,12 +10,14 @@
 • djangorestframework-simplejwt # Webtokens
 • django-cors-headers # enable backend & frontend connection
 • dj-rest-auth
+
 -----Installations-----
 [djangorestframework]
 $ pipenv install djangorestframework
 • update config/settings.py
 INSTALLED_APPS = [
-     'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

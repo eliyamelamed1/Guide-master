@@ -5,16 +5,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # User management
-    path('api-auth/', include('rest_framework.urls')), # this single line add login + logout to 'api/v1/'
     path('api/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('', include('dj_rest_auth.urls')),
     path('signup', include('dj_rest_auth.registration.urls')),
+   
+    # Local
+    path('posts/', include('posts.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -27,3 +28,4 @@ urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html')
     # password confirm - /password/reset/confirm
 
 
+# path('accounts/', include('allauth.urls')),

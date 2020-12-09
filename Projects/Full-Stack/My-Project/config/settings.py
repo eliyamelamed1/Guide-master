@@ -6,8 +6,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'nkl1=co%a_+$i)_lo53_vey4x*@)9ku$z7mu!(!vnmk(1=6fh%'
 
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     # Local
+    'posts',
 
 ]
 
@@ -75,8 +74,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# Databases
+# # TODO- fix postgreSQL database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '0549733123t',
+#         'HOST': 'localhost',
+#         'PORT': 5432
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -87,8 +96,6 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -120,7 +127,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/static'),
@@ -129,6 +135,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+FILE_UPLOAD_PERMISSIONS=0o640 
 
 
 # Django Rest settings
@@ -154,9 +162,10 @@ REST_FRAMEWORK = {
 # • IsAdminUser - only admins/superusers have access
 # • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
 
-CORS_ORIGIN_ALLOW_ALL = True # 
+CORS_ORIGIN_ALLOW_ALL = True # Enable Django & React connection 
 
-FILE_UPLOAD_PERMISSIONS=0o640
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # django-allauth
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
 SITE_ID = 1 # django-allauth

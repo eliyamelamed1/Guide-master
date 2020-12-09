@@ -11,6 +11,7 @@ or
 $ git remote rm origin # to clear current path
 $ git clone https://github.com/wsvincent/hello-world.git # Clone remote repo to your local pc 
 
+$ pip3 freeze > requirements.txt
 $ pip install -r requirements.txt 
 
 --Commit to git--

@@ -42,7 +42,7 @@ urlpatterns = [
     # User managment
     path('api-auth/', include('rest_framework.urls')), # this single line add login + logout to 'api/v1/'
     path('', include('dj_rest_auth.urls')),
-    path('registration/', include('dj_rest_auth.registration.urls')), # sign up 
+    path('signup/', include('dj_rest_auth.registration.urls')), # sign up 
 
     # Api Documentation
     path('swagger/', schema_view.with_ui( 'swagger', cache_timeout=0), name='schema-swagger-ui'),

@@ -1,0 +1,11 @@
+posts/models.py 
+
+TODO - set posts id as uuid
+
+TODO - add author to models
+
+TODO - set Permission to change posts only to the author
+
+TODO - add tests
+
+TODO - connect to PostgreSQL database
