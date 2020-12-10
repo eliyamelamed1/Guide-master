@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     # Local
-    'posts',
+    'profiles',
     
 
 ]

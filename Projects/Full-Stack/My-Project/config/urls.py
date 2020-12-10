@@ -15,7 +15,7 @@ urlpatterns = [
     path('signup', include('dj_rest_auth.registration.urls')),
    
     # Local
-    path('posts/', include('posts.urls')),
+    path('profile/', include('profiles.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

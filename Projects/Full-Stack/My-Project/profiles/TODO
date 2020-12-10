@@ -1,0 +1,13 @@
+TODO - only the profile owner's can update his details
+
+TODO - set localhost/profile link to the user's profile
+
+TODO - set profile id as uuid
+
+TODO - set profile default values as Null meaning - users can only update their profile and cannot create one
+
+TODO - add author to profile models (one to one relation meaning: user can have only one profile)
+
+TODO - in addition to top_rated_chef add a rating score to users profiles
+
+TODO - ADD TESTS!!!!

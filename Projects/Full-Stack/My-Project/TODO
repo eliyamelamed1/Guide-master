@@ -1,20 +1,5 @@
-posts/models.py 
+TODO - change posts to Recipes(listings) + add Profiles(Realtors)
 
-TODO - create post only as looged id user
+TODO - add Accounts app --> 
 
-TODO - set posts id as uuid
-
-TODO - add author to models
-
-TODO - set Permission to change posts only to the author
-
-TODO - add tests
-
-
-
-
-
-
-TODO - change posts to Recipes(listings) + add userinfo(Realtors)
-
-TODO - connect to PostgreSQL database
+    TODO - enable login via email/username
