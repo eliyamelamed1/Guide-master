@@ -1,0 +1,7 @@
+-API-
+
+TODO - create VIEW to update the profile + set only the profile owner's to have access for updating his details
+
+TODO - set localhost/profile link to the user's own recipes list
+
+TODO - add a rating score to users recipes

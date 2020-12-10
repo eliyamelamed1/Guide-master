@@ -4,7 +4,6 @@ from .models import Profile
 from .serializers import ProfileSerializer
 
 class ProfileList(ListAPIView):
-    permissions_classes = (permissions.AllowAny,)
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer 
     pagination_class = None
@@ -19,7 +18,6 @@ class ProfileCreate(CreateAPIView):
     serializer_class = ProfileSerializer
 
 class TopRatedChefsList(ListAPIView):
-    permissions_classes = (permissions.AllowAny,)
     queryset = Profile.objects.filter(top_rated_chef=True)
     serializer_class = ProfileSerializer 
     pagination_class = None

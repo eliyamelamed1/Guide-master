@@ -9,7 +9,7 @@ from .views import (
 
 urlpatterns = [
     path('', ProfileList.as_view()),
-    path('<int:pk>/', ProfileDetails.as_view()),
+    path('<uuid:pk>/', ProfileDetails.as_view()),
     path('create/', ProfileCreate.as_view()),
     path('topratedchefs/', TopRatedChefsList.as_view()),
 ]

@@ -1,5 +1,11 @@
-TODO - change posts to Recipes(listings) + add Profiles(Realtors)
+TODO - add Contacts app
 
 TODO - add Accounts app --> 
 
     TODO - enable login via email/username
+
+    TODO - enable password/reset 
+
+    TODO - enable signup confirmation 
+
+TODO - connect the API to React
