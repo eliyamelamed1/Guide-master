@@ -17,8 +17,9 @@ urlpatterns = [
     # Local
     path('profile/', include('profiles.urls')),
     path('recipes/', include('recipes.urls')),
+    path('contact/', include('contacts.urls')),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))] # catch all other routes that not specified in this file
 

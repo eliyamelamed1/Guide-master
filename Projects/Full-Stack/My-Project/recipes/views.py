@@ -18,7 +18,6 @@ class RecipeCreate(CreateAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     
-
 class RecipeSearch(APIView):
     serializer_class = Recipe.objects.all()
 
@@ -37,8 +36,6 @@ class RecipeSearch(APIView):
 
         keywords = data['keywords']
         queryset = queryset.filter(description__icontains=keywords)
-
-
 
         serializer = RecipeSearchSerializer(queryset, many=True)
 

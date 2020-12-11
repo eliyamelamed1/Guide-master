@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # Local
     'profiles',
     'recipes',
+    'contacts',
+
     
 
 ]
@@ -74,7 +76,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
+SITE_ID = 1 # django-allauth
+CORS_ORIGIN_ALLOW_ALL = True # Enable Django & React connection 
 
 # Databases
 # # TODO- fix postgreSQL database
@@ -96,7 +99,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -115,8 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -158,16 +158,18 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 3
 }
-
-# • AllowAny - any user, authenticated or not, has full access
-# • IsAuthenticated - only authenticated, registered users have access
-# • IsAdminUser - only admins/superusers have access
-# • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
-
-CORS_ORIGIN_ALLOW_ALL = True # Enable Django & React connection 
-
+    # • AllowAny - any user, authenticated or not, has full access
+    # • IsAuthenticated - only authenticated, registered users have access
+    # • IsAdminUser - only admins/superusers have access
+    # • IsAuthenticatedOrReadOnly - unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
 
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
-SITE_ID = 1 # django-allauth
+# Email setup example
+    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    # EMAIL_HOST = 'smtp.gmail.com'
+    # EMAIL_PORT = 587
+    # EMAIL_HOST_USER = '# your email #'
+    # EMAIL_HOST_PASSWORD = '# your app password #'
+    # EMAIL_USE_TLS = True

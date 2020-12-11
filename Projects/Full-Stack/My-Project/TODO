@@ -1,11 +1,43 @@
-TODO - add Contacts app
+                                                                                   TODO - ADD TESTS!!!!
 
-TODO - add Accounts app --> 
+profiles
+    TODO - create VIEW to update the profile + set only the profile owner's to have access for updating his details
 
-    TODO - enable login via email/username
+    TODO - set localhost/profile link to the user's profile
 
-    TODO - enable password/reset 
+    TODO - set profile default values as Null meaning - users can only update their profile and cannot create one
 
-    TODO - enable signup confirmation 
+    TODO - add author to profile models (one to one relation meaning: user can have only one profile)
 
-TODO - connect the API to React
+    TODO - in addition to top_rated_chef add a rating score to users profiles that average of his recipes rating score
+
+
+recipes
+    TODO - create VIEW to update recipes + set only the recipes owner's to have access for updating his details
+
+    TODO - set localhost/recipes link to the user's own recipes list
+
+    TODO - add a rating score to users recipes
+
+    TODO - add a comment section to recipes
+
+contacts
+    TODO - add Contacts app
+
+accounts
+    TODO - add Accounts app --> 
+
+        TODO - enable login via email/username
+
+        TODO - enable password/reset 
+
+        TODO - enable signup confirmation 
+
+contacts
+    TODO - complete the Email setup
+
+general
+    TODO - connect the API to React
+
+    TODO - connect to PostgreSQL database
+
