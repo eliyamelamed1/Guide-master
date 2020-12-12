@@ -79,19 +79,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 SITE_ID = 1 # django-allauth
 CORS_ORIGIN_ALLOW_ALL = True # Enable Django & React connection 
 
-# Databases
-# # TODO- fix postgreSQL database
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '0549733123t',
-#         'HOST': 'localhost',
-#         'PORT': 5432
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
