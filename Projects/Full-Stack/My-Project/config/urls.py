@@ -9,10 +9,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # User management
-    path('api/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
-    path('', include('dj_rest_auth.urls')),
-    path('signup', include('dj_rest_auth.registration.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('accounts/', include('dj_rest_auth.urls')),
+    path('accounts/signup/', include('dj_rest_auth.registration.urls')),
    
     # Local
     path('profile/', include('profiles.urls')),

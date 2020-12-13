@@ -41,3 +41,5 @@ general
 
     TODO - connect to PostgreSQL database
 
+React
+    TODO - check actions/auth.js row 21 - if tokens doesnt work change to 'rest_framework.authtoken',
