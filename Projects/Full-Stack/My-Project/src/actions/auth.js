@@ -8,13 +8,13 @@ import {
     LOGOUT,
 } from './types';
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
         },
     };
-    const body = JSON.stringify({ email, password });
+    const body = JSON.stringify({ username, password });
 
     try {
         const res = await axios.post(
@@ -37,7 +37,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 };
 
-export const signup = ({ name, email, password, password2 }) => async (
+export const signup = ({ username, email, password, password2 }) => async (
     dispatch
 ) => {
     const config = {
@@ -45,7 +45,7 @@ export const signup = ({ name, email, password, password2 }) => async (
             'Content-Type': 'application/json',
         },
     };
-    const body = JSON.stringify({ name, email, password, password2 });
+    const body = JSON.stringify({ username, email, password, password2 });
 
     try {
         const res = await axios.post(
@@ -59,7 +59,7 @@ export const signup = ({ name, email, password, password2 }) => async (
             payload: res.data,
         });
 
-        dispatch(login(email, password));
+        dispatch(login(username, password));
     } catch (err) {
         dispatch({
             type: SIGNUP_FAIL,

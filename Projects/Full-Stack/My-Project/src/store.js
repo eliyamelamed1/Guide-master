@@ -8,9 +8,9 @@ const initialState = {};
 const middleware = [thunk];
 
 const store = createStore(
-  mergeReducers,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware)) // add dev tools functionality
+    mergeReducers,
+    initialState,
+    composeWithDevTools(applyMiddleware(...middleware)) // add dev tools functionality
 );
 
 export default store;
