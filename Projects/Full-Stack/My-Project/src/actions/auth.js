@@ -49,7 +49,7 @@ export const signup = ({ username, email, password, password2 }) => async (
 
     try {
         const res = await axios.post(
-            'http://localhost:8000/api/token/',
+            'http://localhost:8000/accounts/signup/',
             body,
             config
         );
