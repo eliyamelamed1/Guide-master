@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const NavBar = ({ authReducer: { isAuthenticated, loading }, logout }) => {
     const authLinks = (
-        <a onClick={logout} href="#">
+        <a onClick={logout} href="/">
             Logout
         </a>
     );
