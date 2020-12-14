@@ -37,15 +37,23 @@ export const login = (username, password) => async (dispatch) => {
     }
 };
 
-export const signup = ({ username, email, password, password2 }) => async (
-    dispatch
-) => {
+export const signup = ({
+    username,
+    email,
+    password,
+    confirm_password,
+}) => async (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
         },
     };
-    const body = JSON.stringify({ username, email, password, password2 });
+    const body = JSON.stringify({
+        username,
+        email,
+        password,
+        confirm_password,
+    });
 
     try {
         const res = await axios.post(

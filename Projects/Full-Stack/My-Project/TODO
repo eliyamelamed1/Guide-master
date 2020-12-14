@@ -43,3 +43,5 @@ general
 
 React
     TODO - check actions/auth.js row 21 - if tokens doesnt work change to 'rest_framework.authtoken',
+
+    NOTE - for some reason react comment need to start with upper-case (check why)
