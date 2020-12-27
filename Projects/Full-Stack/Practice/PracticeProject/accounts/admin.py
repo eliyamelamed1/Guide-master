@@ -4,4 +4,3 @@ from .models import UserAccount
 admin.site.register(UserAccount)
 
 
-# TODO - FIX!!

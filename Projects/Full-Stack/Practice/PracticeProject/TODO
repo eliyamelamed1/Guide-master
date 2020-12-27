@@ -1,14 +1,28 @@
-Bug-Fixes
-    0. after signing in at auth/jwt/create/ url the user is still not authenticated!!! (backend)
+API-backend:
+    Bug-Fixes(IMPORTANT):
+        Changed => after signing in at auth/jwt/create/ url the user is still not authenticated!!! (backend) (JWT Authentication bug), therefore switched to token + session Authentication (dj_rest_auth + rest_framework.authtoken ) instead of JWT (djoser.urls.jwt). [check config/urls.py]
+        Need To Be Done =>. because of the switch to token & session Authentication, update the front-end post requests urls (at actions/auth.js) (new url endpoints are descripted at config/urls.py)
+    
+    config:
+        1. Set up email settings at config/settings.py
 
-backend:
-    1. Set users id to uuid at accounts/models.py
-    2. Set up email settings at config/settings.py
+    accounts:
+        1. Set users id to uuid at accounts/models.py
+        2. accounts/admin.py is empty fill it up!  
+        
     
 front-end:
-    1. if the page refresh after logout, the user get logged in
-    2. when an authenticated user visit the login page the page renders the guest nav bar for a second
-    3. connect recipes app to front-end
+    Bug-Fixes:
+        1. if the page refresh after logout, the user get logged in
+        2. when an authenticated user visit the login page the page renders the guest nav bar for a second
+        
+    recipes:
+        1 connect recipes app to front-end
 
 Tests:
-    create tests
+    API
+        accounts:
+        recipes:
+            1. test for creating post as authenticated user and a guest
+
+    

@@ -22,11 +22,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     #3rd party
-    'rest_framework',
     'djoser',
     'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
 
     #local
     'accounts',
@@ -143,19 +146,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Rest Framework Settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.IsAuthenticated'
         
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication', # Defualt settings- add the ability to log in and log out
+
     ),
 
 }
 
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-}
 
 # Djoser settings
 DJOSER = {
@@ -177,11 +179,8 @@ DJOSER = {
         'user': 'accounts.serializers.UserCreateSerializer',
         'user_delete': 'accounts.serializers.UserDeleteSerializer',
     },
-    
-
-
 }
 
-
-
 AUTH_USER_MODEL = 'accounts.UserAccount'
+
+SITE_ID = 1
