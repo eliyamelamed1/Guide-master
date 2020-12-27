@@ -44,4 +44,6 @@ general
 React
     TODO - check actions/auth.js row 21 - if tokens doesnt work change to 'rest_framework.authtoken',
 
-    NOTE - for some reason react comment need to start with upper-case (check why)
+    NOTE - for some reason react components need to start with upper-case 
+
+    TODO - error sign up in react post - password, confirm_password.  dj_rest_auth.registration need - password1, password2 (need to modify dj_rest_auth.registration)
