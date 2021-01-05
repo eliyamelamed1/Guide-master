@@ -1,12 +1,12 @@
 import pytest
 from rest_framework.test import APIClient
 
-# ------------------------------------------------Fixtures
+# ---------------------------------------- Set Up
 @pytest.fixture
 def api_client():
    return APIClient()
 
-
+# ---------------------------------------- Authentication
 @pytest.fixture
 def create_user(api_client):
     signup_url = "/auth/users/"
@@ -33,6 +33,7 @@ def login_user(api_client, create_user):
     return user_logged_in
 
 
+# ---------------------------------------- Recipes
 @pytest.fixture
 def create_recipe(api_client):
     recipe_creation_url = '/recipes/create/'
@@ -42,8 +43,8 @@ def create_recipe(api_client):
         'author': {user_id},
         'title': 'recipe title',
         'description': 'recipe description',
-        'method_type': 'Cook', # the default for method_type is Any which means it can be left empty
-        'flavor_type': 'Sour',
+        'method_type': 'Cook', # the default for method_type is Any
+        'flavor_type': 'Sour', 
         'difficulty_type': 'Easy',
     }
     create_recipe = api_client.post(recipe_creation_url, data)
