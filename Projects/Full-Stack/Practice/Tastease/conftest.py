@@ -43,7 +43,7 @@ def create_recipe(api_client):
         'author': {user_id},
         'title': 'recipe title',
         'description': 'recipe description',
-        'method_type': 'Cook', # the default for method_type is Any
+        'method_type': 'Cook', 
         'flavor_type': 'Sour', 
         'difficulty_type': 'Easy',
     }

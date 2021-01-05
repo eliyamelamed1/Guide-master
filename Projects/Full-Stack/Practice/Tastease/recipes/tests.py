@@ -48,3 +48,13 @@ class Test_create_recipe:
         
         assert create_recipe.status_code == 401
 
+# class Test_search_recipe:
+#     @pytest.mar.django_db
+#     def Test_search_recipe_as_authenticated_user(self, api_client, login_user, search_recipe):
+
+#         assert search_recipe.status_code == 200
+
+#     @pytest.mar.django_db
+#     def Test_search_recipe_not_allowed_for_guest_user(self, api_client, login_user, search_recipe):
+
+#         assert search_recipe.status_code == 401
