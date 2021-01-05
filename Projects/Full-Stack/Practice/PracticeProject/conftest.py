@@ -1,6 +1,5 @@
 import pytest
 from rest_framework.test import APIClient
-from django.contrib.auth import get_user_model
 
 # ------------------------------------------------Fixtures
 @pytest.fixture
@@ -19,8 +18,8 @@ def create_user(api_client):
     }
     user_created = api_client.post(signup_url, data)
 
-    assert user_created.status_code == 201
     return user_created
+
 
 @pytest.fixture
 def login_user(api_client, create_user):
@@ -31,5 +30,18 @@ def login_user(api_client, create_user):
     }
     user_logged_in = api_client.post(login_url, data)
 
-    assert user_logged_in.status_code == 200
     return user_logged_in
+
+
+@pytest.fixture
+def create_recipe(api_client):
+    recipe_creation_url = '/recipes/create/'
+    user_id = 1
+
+    data = {
+        'author': {user_id},
+        'title': 'recipe title',
+    }
+    create_recipe = api_client.post(recipe_creation_url, data)
+
+    return create_recipe

@@ -26,13 +26,13 @@ class Recipe(models.Model):
     author = models.ForeignKey(get_user_model() , on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True)
-    method_type = models.CharField(max_length=50, choices=MethodType.choices, default=None)
-    flavor_type = models.CharField(max_length=50, choices=FlavorType.choices, default=None)
-    difficulty_type = models.CharField(max_length=50, choices=DifficultyType.choices, default=None)
+    method_type = models.CharField(max_length=50, choices=MethodType.choices, blank=True)
+    flavor_type = models.CharField(max_length=50, choices=FlavorType.choices, blank=True)
+    difficulty_type = models.CharField(max_length=50, choices=DifficultyType.choices, blank=True)
     # prep_time = models.IntegerField()
     is_published = models.BooleanField(default=True)
     photo_main = models.ImageField(upload_to='media/', blank=True)
-    list_date = models.DateTimeField(default=now, blank=True)
+    list_date = models.DateTimeField(default=now, blank=True) # TODO - improve
 
     def __str__(self):
         return self.title

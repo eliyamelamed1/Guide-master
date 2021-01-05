@@ -10,6 +10,8 @@ API-backend:
         1. Set users id to uuid at accounts/models.py
         2. accounts/admin.py is empty fill it up!  
         
+        recipes:
+         1. Set recipes id as slug
     
 front-end:
     Bug-Fixes:
