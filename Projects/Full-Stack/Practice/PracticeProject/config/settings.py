@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication', # Defualt settings- add the ability to log in and log out
+        'rest_framework.authentication.SessionAuthentication', # Defualt settings- add the browsable api
 
     ),
 
