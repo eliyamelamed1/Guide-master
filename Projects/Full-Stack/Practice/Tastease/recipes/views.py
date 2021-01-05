@@ -2,12 +2,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework import permissions
+
 from .models import Recipe
 from .serializers import RecipeSerializer, RecipeSearchSerializer
-from datetime import datetime, timezone, timedelta
 
 class RecipeList(ListAPIView):
     queryset = Recipe.objects.order_by('-list_date').filter(is_published=True)
+    permission_classes = (permissions.AllowAny, )
     serializer_class = RecipeSerializer
 
 class RecipeDetail(RetrieveAPIView):
@@ -19,24 +20,20 @@ class RecipeCreate(CreateAPIView):
     serializer_class = RecipeSerializer
     
 class RecipeSearch(APIView):
-    serializer_class = Recipe.objects.all()
+    permission_classes = (permissions.AllowAny, )
+    serializer_class = RecipeSearchSerializer
 
     def post(self, request, format=None):
         queryset = Recipe.objects.order_by('-list_date').filter(is_published=True)
         data = self.request.data
 
-        method_type = data['method_type']
-        queryset = queryset.filter(method_type__iexact=method_type)
-        
+        description = data['description']
+        queryset = queryset.filter(description__icontains=description)
+
         flavor_type = data['flavor_type']
         queryset = queryset.filter(flavor_type__iexact=flavor_type)
 
-        difficulty_type = data['difficulty_type']
-        queryset = queryset.filter(difficulty_type__iexact=difficulty_type)
-
-        keywords = data['keywords']
-        queryset = queryset.filter(description__icontains=keywords)
-
-        serializer = RecipeSearchSerializer(queryset, many=True)
+        serializer = RecipeSerializer(queryset, many=True)
 
         return Response(serializer.data)
+        

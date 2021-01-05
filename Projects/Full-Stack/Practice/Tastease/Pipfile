@@ -47,8 +47,8 @@ Django = "==3.1.4"
 Jinja2 = "==2.11.2"
 MarkupSafe = "==1.1.1"
 PyJWT = "==2.0.0"
-pillow = "*"
 dj-rest-auth = "*"
+Pillow = "==8.0.1"
 
 [dev-packages]
 
