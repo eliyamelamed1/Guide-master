@@ -23,14 +23,14 @@ class Recipe(models.Model):
         default=uuid.uuid4,
         editable=False
     )
-    author = models.ForeignKey(get_user_model() , on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model() , on_delete=models.CASCADE) # TODO - Author is presents as id in recipes listing fix it
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True)
-    method_type = models.CharField(max_length=50, choices=MethodType.choices, blank=True)
-    flavor_type = models.CharField(max_length=50, choices=FlavorType.choices, blank=True)
-    difficulty_type = models.CharField(max_length=50, choices=DifficultyType.choices, blank=True)
+    method_type = models.CharField(max_length=50, choices=MethodType.choices)
+    flavor_type = models.CharField(max_length=50, choices=FlavorType.choices)
+    difficulty_type = models.CharField(max_length=50, choices=DifficultyType.choices)
     # prep_time = models.IntegerField()
-    is_published = models.BooleanField(default=True)
+    is_published = models.BooleanField(default=False)
     photo_main = models.ImageField(upload_to='media/', blank=True)
     list_date = models.DateTimeField(default=now, blank=True) # TODO - improve
 

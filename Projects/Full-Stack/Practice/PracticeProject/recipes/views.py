@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework import permissions
 from .models import Recipe
-from .serializers import RecipeSerializer, RecipeSearchSerializer, RecipeCreateSerializer
+from .serializers import RecipeSerializer, RecipeSearchSerializer
 from datetime import datetime, timezone, timedelta
 
 class RecipeList(ListAPIView):
@@ -16,7 +16,7 @@ class RecipeDetail(RetrieveAPIView):
 
 class RecipeCreate(CreateAPIView):
     queryset = Recipe.objects.all()
-    serializer_class = RecipeCreateSerializer
+    serializer_class = RecipeSerializer
     
 class RecipeSearch(APIView):
     serializer_class = Recipe.objects.all()
