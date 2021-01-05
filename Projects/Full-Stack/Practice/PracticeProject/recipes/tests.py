@@ -36,10 +36,12 @@ def test_create_recipe_page_render_for_authenticated_user(api_client, login_user
     assert recipe_creation_url_render.status_code == 405 
 
 
+
 @pytest.mark.django_db
 def test_create_recipe_as_authenticated_user(api_client, login_user, create_recipe):
     
     assert create_recipe.status_code == 201
+
 
 @pytest.mark.django_db
 def test_create_recipe_as_guest_user(api_client, create_recipe):

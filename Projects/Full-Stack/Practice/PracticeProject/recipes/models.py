@@ -5,6 +5,7 @@ import uuid
 
 class Recipe(models.Model):
     class MethodType(models.TextChoices):
+        ANY = 'Any'
         COOK = 'Cook'
         BAKE = 'Bake'
     
@@ -26,7 +27,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(get_user_model() , on_delete=models.CASCADE) # TODO - Author is presents as id in recipes listing fix it
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True)
-    method_type = models.CharField(max_length=50, choices=MethodType.choices)
+    method_type = models.CharField(max_length=50, choices=MethodType.choices, default='Any')
     flavor_type = models.CharField(max_length=50, choices=FlavorType.choices)
     difficulty_type = models.CharField(max_length=50, choices=DifficultyType.choices)
     # prep_time = models.IntegerField()
