@@ -64,9 +64,9 @@ def search_recipe(api_client):
         'description': 'description',
     }
 
-    detail_recipe = api_client.post(recipe_search_url, data)
+    recipe_search = api_client.post(recipe_search_url, data)
 
-    return detail_recipe
+    return recipe_search
 
 @pytest.fixture
 def detail_recipe(api_client):
@@ -77,7 +77,7 @@ def detail_recipe(api_client):
     return detail_recipe
 
 # @pytest.fixture
-# def detail_recipe_update_info(api_client):
+# def update_recipe(api_client):
 #     recipe_id = Recipe.objects.all()[0].id
 #     data = {
 #         'title': 'new recipe title'
