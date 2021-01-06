@@ -56,7 +56,8 @@ class Test_search_recipe:
             recipe_search_url = '/recipes/search/'
             page_render = api_client.get(recipe_search_url)
 
-            assert page_render.status_code == 200
+            # 405 method not allowed - get isnt allowed only post
+            assert page_render.status_code == 405
 
         @pytest.mark.django_db
         def test_recipe_search_successfull_for_authenticated_users(self,api_client,login_user,search_recipe):
@@ -68,7 +69,8 @@ class Test_search_recipe:
             recipe_search_url = '/recipes/search/'
             page_render = api_client.get(recipe_search_url)
 
-            assert page_render.status_code == 200
+            # 405 method not allowed - get isnt allowed only post
+            assert page_render.status_code == 405
 
         @pytest.mark.django_db
         def test_recipe_search_successfull_for_guest_users(self,api_client,search_recipe):
