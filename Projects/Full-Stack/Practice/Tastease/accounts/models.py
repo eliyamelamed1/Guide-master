@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 class UserAccountManager(BaseUserManager):
 
     def create_superuser(self, email, name, password):
-        user = self.signup(email, name, password)
+        user = self.create_user(email, name, password)
 
         user.is_superuser = True
         user.is_staff = True
@@ -12,7 +12,7 @@ class UserAccountManager(BaseUserManager):
 
         return user
 
-    def signup(self, email, name, password=None):
+    def create_user(self, email, name, password=None):
         if not email:
             raise ValueError('Users must have an email adress')
 

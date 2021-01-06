@@ -92,8 +92,8 @@ class Test_recipe_details:
         @pytest.mark.django_db
         def test_recipe_detail_for_guest_users(self, api_client,login, create_recipe,logout):
             recipe_id = Recipe.objects.all()[0].id
-            recipe_search_url = '/recipes/{recipe_id}/'
-            page_render = api_client.get(recipe_search_url)
+            detail_recipe_url = '/recipes/{recipe_id}/'
+            page_render = api_client.get(detail_recipe_url)
 
             logout =  api_client.post('/users/logout/')
             assert page_render.status_code == 200
