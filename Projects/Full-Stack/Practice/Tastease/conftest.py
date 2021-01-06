@@ -32,6 +32,12 @@ def login_user(api_client, create_user):
 
     return user_logged_in
 
+@pytest.fixture
+def logout(api_client):
+    logout_url = "/users/logout/"
+    logout = api_client.post(logout_url)
+
+    return logout
 
 # ---------------------------------------- Recipes
 @pytest.fixture

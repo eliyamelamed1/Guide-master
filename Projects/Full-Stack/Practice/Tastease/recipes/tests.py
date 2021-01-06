@@ -33,7 +33,9 @@ class Test_create_recipe:
 
         @pytest.mark.django_db
         def test_create_recipe_as_authenticated_user(self, api_client, login_user, create_recipe):
+            recipe_title = Recipe.objects.all()[0].title
             
+            assert recipe_title == 'recipe title'
             assert create_recipe.status_code == 201
 
     class Test_guest_users:
@@ -75,11 +77,23 @@ class Test_search_recipe:
         def test_recipe_search_successfull_for_guest_users(self,api_client,search_recipe):
             assert search_recipe.status_code == 200
 
-# class Test_search_recipe:
-#     class Test_authenticated_users:
-#         @pytest.mark.django_db
-#         def test_recipe_detail_for_authenticated_users(self, api_client, login_user):
-#             recipe_search_url = '/recipes/search/'
-#             page_render = api_client.get(recipe_search_url)
+class Test_recipe_details:
+    class Test_authenticated_users:
+        @pytest.mark.django_db
+        def test_recipe_detail_for_authenticated_users(self, api_client, login_user, create_recipe):
+            recipe_id = Recipe.objects.all()[0].id
+            recipe_search_url = '/recipes/{recipe_id}/'
+            page_render = api_client.get(recipe_search_url)
 
-#             assert page_render.status_code == 405 # 405 method not allowed - get isnt allowed only post
+            assert page_render.status_code == 200
+
+    class Test_guest_users:
+        
+        @pytest.mark.django_db
+        def test_recipe_detail_for_guest_users(self, api_client,login_user, create_recipe,logout):
+            recipe_id = Recipe.objects.all()[0].id
+            recipe_search_url = '/recipes/{recipe_id}/'
+            page_render = api_client.get(recipe_search_url)
+
+            logout =  api_client.post('/users/logout/')
+            assert page_render.status_code == 200
