@@ -18,8 +18,8 @@ class Recipe(models.Model):
     description = models.TextField(blank=True)
     flavor_type = models.CharField(max_length=50, choices=FlavorType.choices)
     photo_main = models.ImageField(upload_to='media/', blank=True)
-    # created_at = models.DateTimeField(auto_now_add=True, default=now)
     updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
