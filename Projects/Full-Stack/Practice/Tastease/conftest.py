@@ -1,6 +1,7 @@
 import pytest
 from rest_framework.test import APIClient
 
+
 # ---------------------------------------- Set Up
 @pytest.fixture
 def api_client():
@@ -38,7 +39,6 @@ def login_user(api_client, create_user):
 def create_recipe(api_client):
     recipe_creation_url = '/recipes/create/'
     user_id = 1
-
     data = {
         'author': {user_id},
         'title': 'recipe title',
@@ -48,3 +48,16 @@ def create_recipe(api_client):
     create_recipe = api_client.post(recipe_creation_url, data)
 
     return create_recipe
+
+
+@pytest.fixture
+def search_recipe(api_client):
+    recipe_search_url = '/recipes/search/'
+    data = {
+        'flavor_type': 'Sour',
+        'description': 'description',
+    }
+
+    search_recipe = api_client.post(recipe_search_url, data)
+
+    return search_recipe
