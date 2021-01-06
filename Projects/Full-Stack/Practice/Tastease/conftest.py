@@ -8,7 +8,7 @@ def api_client():
 
 # ---------------------------------------- Authentication
 @pytest.fixture
-def create_user(api_client):
+def signup(api_client):
     signup_url = "/auth/users/"
     data = {
         "email": "testuser@gmail.com",
@@ -22,7 +22,7 @@ def create_user(api_client):
 
 
 @pytest.fixture
-def login_user(api_client, create_user):
+def login(api_client, signup):
     login_url = "/users/login/"
     data = {
         "email": "testuser@gmail.com", 

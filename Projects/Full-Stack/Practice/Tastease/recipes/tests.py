@@ -6,7 +6,7 @@ from .models import Recipe
 class Test_recipe_list:
     class Test_authenticated_users:
         @pytest.mark.django_db
-        def test_recipe_list_page_render_for_authenticated_users(self, api_client ,login_user):
+        def test_recipe_list_page_render_for_authenticated_users(self, api_client ,login):
             recipes_list_url = '/recipes/'
             page_render = api_client.get(recipes_list_url)
 
@@ -24,7 +24,7 @@ class Test_recipe_list:
 class Test_create_recipe:
     class Test_authenticated_users:
         @pytest.mark.django_db
-        def test_create_recipe_page_render_for_authenticated_user(self, api_client, login_user):
+        def test_create_recipe_page_render_for_authenticated_user(self, api_client, login):
             recipe_creation_url = '/recipes/create/'
             recipe_creation_url_render = api_client.get(recipe_creation_url)
 
@@ -32,7 +32,7 @@ class Test_create_recipe:
             assert recipe_creation_url_render.status_code == 405
 
         @pytest.mark.django_db
-        def test_create_recipe_as_authenticated_user(self, api_client, login_user, create_recipe):
+        def test_create_recipe_as_authenticated_user(self, api_client, login, create_recipe):
             recipe_title = Recipe.objects.all()[0].title
             
             assert recipe_title == 'recipe title'
@@ -55,14 +55,14 @@ class Test_create_recipe:
 class Test_search_recipe:
     class Test_authenticated_users:
         @pytest.mark.django_db
-        def test_recipe_search_page_render_for_authenticated_user(self, api_client, login_user):
+        def test_recipe_search_page_render_for_authenticated_user(self, api_client, login):
             recipe_search_url = '/recipes/search/'
             page_render = api_client.get(recipe_search_url)
 
             assert page_render.status_code == 405 # 405 method not allowed - get isnt allowed only post
 
         @pytest.mark.django_db
-        def test_recipe_search_successfull_for_authenticated_users(self,api_client,login_user,search_recipe):
+        def test_recipe_search_successfull_for_authenticated_users(self,api_client,login,search_recipe):
             assert search_recipe.status_code == 200
 
     class Test_guest_users:
@@ -80,7 +80,7 @@ class Test_search_recipe:
 class Test_recipe_details:
     class Test_authenticated_users:
         @pytest.mark.django_db
-        def test_recipe_detail_for_authenticated_users(self, api_client, login_user, create_recipe):
+        def test_recipe_detail_for_authenticated_users(self, api_client, login, create_recipe):
             recipe_id = Recipe.objects.all()[0].id
             recipe_search_url = '/recipes/{recipe_id}/'
             page_render = api_client.get(recipe_search_url)
@@ -90,7 +90,7 @@ class Test_recipe_details:
     class Test_guest_users:
         
         @pytest.mark.django_db
-        def test_recipe_detail_for_guest_users(self, api_client,login_user, create_recipe,logout):
+        def test_recipe_detail_for_guest_users(self, api_client,login, create_recipe,logout):
             recipe_id = Recipe.objects.all()[0].id
             recipe_search_url = '/recipes/{recipe_id}/'
             page_render = api_client.get(recipe_search_url)
