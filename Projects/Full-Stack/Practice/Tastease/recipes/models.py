@@ -18,7 +18,6 @@ class Recipe(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     flavor_type = models.CharField(max_length=50, choices=FlavorType.choices)
-    is_published = models.BooleanField(default=True)
     photo_main = models.ImageField(upload_to='media/', blank=True)
     list_date = models.DateTimeField(default=now, blank=True) # TODO - improve
 

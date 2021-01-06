@@ -1,7 +1,6 @@
 import pytest
 from rest_framework.test import APIClient
 
-
 # ---------------------------------------- Set Up
 @pytest.fixture
 def api_client():

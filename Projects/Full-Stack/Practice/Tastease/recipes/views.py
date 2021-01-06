@@ -1,18 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 from rest_framework import permissions
 
 from .models import Recipe
 from .serializers import RecipeSerializer, RecipeSearchSerializer
 
 class RecipeList(ListAPIView):
-    queryset = Recipe.objects.order_by('-list_date').filter(is_published=True)
-    permission_classes = (permissions.AllowAny, )
+    queryset = Recipe.objects.order_by('-list_date')
     serializer_class = RecipeSerializer
 
-class RecipeDetail(RetrieveAPIView):
-    queryset = Recipe.objects.order_by('-list_date').filter(is_published=True)
+class RecipeDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Recipe.objects.order_by('-list_date')
     serializer_class = RecipeSerializer
 
 class RecipeCreate(CreateAPIView):
@@ -24,7 +23,7 @@ class RecipeSearch(APIView):
     serializer_class = RecipeSearchSerializer
 
     def post(self, request, format=None):
-        queryset = Recipe.objects.order_by('-list_date').filter(is_published=True)
+        queryset = Recipe.objects.order_by('-list_date')
         data = self.request.data
 
         description = data['description']
