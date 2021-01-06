@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='recipe',
-            name='list_date',
+            name='updated_at',
             field=models.DateTimeField(blank=True, default=django.utils.timezone.now),
         ),
     ]

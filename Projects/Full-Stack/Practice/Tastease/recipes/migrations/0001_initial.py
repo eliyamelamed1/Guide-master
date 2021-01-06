@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('difficulty_type', models.CharField(choices=[('Easy', 'Easy'), ('Intermediate', 'Intermediate'), ('Hard', 'Hard')], default=None, max_length=50)),
                 ('is_published', models.BooleanField(default=True)),
                 ('photo_main', models.ImageField(blank=True, upload_to='media/')),
-                ('list_date', models.DateTimeField(blank=True, default=django.utils.timezone.now)),
+                ('updated_at', models.DateTimeField(blank=True, default=django.utils.timezone.now)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

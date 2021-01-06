@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.timezone import now
 from django.contrib.auth import get_user_model
 import uuid
 
@@ -19,7 +18,8 @@ class Recipe(models.Model):
     description = models.TextField(blank=True)
     flavor_type = models.CharField(max_length=50, choices=FlavorType.choices)
     photo_main = models.ImageField(upload_to='media/', blank=True)
-    list_date = models.DateTimeField(default=now, blank=True) # TODO - change
+    # created_at = models.DateTimeField(auto_now_add=True, default=now)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title

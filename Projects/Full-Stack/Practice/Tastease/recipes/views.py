@@ -7,11 +7,11 @@ from .models import Recipe
 from .serializers import RecipeSerializer, RecipeSearchSerializer
 
 class RecipeList(ListAPIView):
-    queryset = Recipe.objects.order_by('-list_date')
+    queryset = Recipe.objects.order_by('-updated_at')
     serializer_class = RecipeSerializer
 
 class RecipeDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Recipe.objects.order_by('-list_date')
+    queryset = Recipe.objects.order_by('-updated_at')
     serializer_class = RecipeSerializer
 
 class RecipeCreate(CreateAPIView):
@@ -23,7 +23,7 @@ class RecipeSearch(APIView):
     serializer_class = RecipeSearchSerializer
 
     def post(self, request, format=None):
-        queryset = Recipe.objects.order_by('-list_date')
+        queryset = Recipe.objects.order_by('-updated_at')
         data = self.request.data
 
         description = data['description']
