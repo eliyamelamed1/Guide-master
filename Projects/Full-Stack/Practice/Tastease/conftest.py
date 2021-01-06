@@ -1,5 +1,6 @@
 import pytest
 from rest_framework.test import APIClient
+from recipes.models import Recipe
 
 # ---------------------------------------- Set Up
 @pytest.fixture
@@ -63,6 +64,25 @@ def search_recipe(api_client):
         'description': 'description',
     }
 
-    search_recipe = api_client.post(recipe_search_url, data)
+    detail_recipe = api_client.post(recipe_search_url, data)
 
-    return search_recipe
+    return detail_recipe
+
+@pytest.fixture
+def detail_recipe(api_client):
+    recipe_id = Recipe.objects.all()[0].id
+    detail_recipe_url = '/recipes/{recipe_id}/'
+    detail_recipe = api_client.get(detail_recipe_url)
+
+    return detail_recipe
+
+# @pytest.fixture
+# def detail_recipe_update_info(api_client):
+#     recipe_id = Recipe.objects.all()[0].id
+#     data = {
+#         'title': 'new recipe title'
+#     }
+#     detail_recipe_url = '/recipes/{recipe_id}/'
+#     detail_recipe_update_info = api_client.put(detail_recipe_url, data)
+
+#     return detail_recipe_update_info

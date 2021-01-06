@@ -78,22 +78,14 @@ class Test_search_recipe:
             assert search_recipe.status_code == 200
 
 class Test_recipe_details:
-    class Test_authenticated_users:
-        @pytest.mark.django_db
-        def test_recipe_detail_for_authenticated_users(self, api_client, login, create_recipe):
-            recipe_id = Recipe.objects.all()[0].id
-            recipe_search_url = '/recipes/{recipe_id}/'
-            page_render = api_client.get(recipe_search_url)
+        class Test_authenticated_users:
+            @pytest.mark.django_db
+            def test_recipe_detail_render_for_authenticated_users(self, api_client, login, create_recipe,detail_recipe):
 
-            assert page_render.status_code == 200
+                assert detail_recipe.status_code == 200
 
-    class Test_guest_users:
-        
-        @pytest.mark.django_db
-        def test_recipe_detail_for_guest_users(self, api_client,login, create_recipe,logout):
-            recipe_id = Recipe.objects.all()[0].id
-            detail_recipe_url = '/recipes/{recipe_id}/'
-            page_render = api_client.get(detail_recipe_url)
+        class Test_guest_users:
+            @pytest.mark.django_db
+            def test_recipe_detail_render_for_guest_users(self, api_client,login, create_recipe,logout,detail_recipe):
 
-            logout =  api_client.post('/users/logout/')
-            assert page_render.status_code == 200
+                assert detail_recipe.status_code == 200
