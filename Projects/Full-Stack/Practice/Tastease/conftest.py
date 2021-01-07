@@ -58,15 +58,15 @@ def create_recipe(api_client):
 
 @pytest.fixture
 def search_recipe(api_client):
-    recipe_search_url = '/recipes/search/'
+    search_recipe_url = '/recipes/search/'
     data = {
         'flavor_type': 'Sour',
         'description': 'description',
     }
 
-    recipe_search = api_client.post(recipe_search_url, data)
+    search_recipe = api_client.post(search_recipe_url, data)
 
-    return recipe_search
+    return search_recipe
 
 @pytest.fixture
 def detail_recipe(api_client):

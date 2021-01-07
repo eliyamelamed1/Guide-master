@@ -15,6 +15,7 @@ class RecipeDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer
 
 class RecipeCreate(CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     
