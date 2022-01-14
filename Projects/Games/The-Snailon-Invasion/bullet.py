@@ -10,6 +10,9 @@ class Bullet(Sprite): # sprite module give the option to group related arguments
 
         # create a bullet rect at (0,0) and giving him width and height
         self.rect = pygame.Rect(0 , 0, ai_settings.bullet_width , ai_settings.bullet_height)
+        # self.image = pygame.image.load('images/salt_shaker.bmp') # salt IMAGE
+        # self.image = pygame.transform.scale(self.image, (80, 100)) # adjust ship size
+        # self.rect = self.image.get_rect() # the ship attribute as a rectangles
 
         """POSITIONING THE BULLET"""
         self.rect.centerx = ship.rect.centerx # bullet center == ship center

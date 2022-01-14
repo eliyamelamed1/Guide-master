@@ -9,8 +9,8 @@ class Ship(Sprite):
         self.ai_settings = ai_settings
 
         # Load the ship image and get its rect.
-        self.image = pygame.image.load('images/ship.bmp') # ship IMAGE
-        self.image = pygame.transform.scale(self.image, (70, 50)) # adjust ship size
+        self.image = pygame.image.load('images/salt_shaker.bmp') # salt IMAGE
+        self.image = pygame.transform.scale(self.image, (80, 100)) # adjust ship size
         self.rect = self.image.get_rect() # the ship attribute as a rectangles
         self.screen_rect = screen.get_rect() # variable for screen dimensions
         # Ship start location
